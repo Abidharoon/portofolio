@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abid HAROON - Portfolio</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+        }
+        body {font-family: 'Poppins', sans-serif; color: #333; scroll-behavior: smooth;}
+        .navbar {background-color: rgba(255, 255, 255, 0.95) !important; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); padding: 15px 0;}
+        .navbar-brand {font-weight: 700; color: var(--primary-color);}
+        .nav-link {font-weight: 500; margin: 0 10px; color: var(--dark-color);}
+        .nav-link:hover {color: var(--primary-color);}
+        section {padding: 80px 0;}
+        .hero {background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%); color: white; padding: 150px 0 100px; text-align: center;}
+        .hero h1 {font-weight: 700; font-size: 3.5rem; margin-bottom: 20px;}
+        .profile-img {width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 5px solid rgba(255, 255, 255, 0.3); margin-bottom: 30px;}
+        .btn-primary {background-color: var(--primary-color); border-color: var(--primary-color); padding: 12px 30px; border-radius: 30px; font-weight: 600;}
+        .btn-primary:hover {background-color: #2980b9; border-color: #2980b9; transform: translateY(-3px);}
+        .section-title {text-align: center; margin-bottom: 60px;}
+        .section-title h2 {font-weight: 700; color: var(--secondary-color); position: relative; display: inline-block; padding-bottom: 15px;}
+        .section-title h2::after {content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 70px; height: 3px; background-color: var(--primary-color);}
+        footer {background-color: var(--secondary-color); color: white; padding: 30px 0; text-align: center;}
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Abid HAROON</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#accueil">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#apropos">À propos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#competences">Compétences</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projets">Projets</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Expérience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#compte-rendu">Compte rendu</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section id="accueil" class="hero">
+        <div class="container">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" alt="Abid HAROON" class="profile-img">
+            <h1>Abid HAROON</h1>
+            <p>Étudiant en BTS SIO - Motivé, adaptable et disponible immédiatement pour de nouvelles missions</p>
+            <a href="#contact" class="btn btn-light btn-lg me-3">Me contacter</a>
+            <a href="CV_Abid_HAROON.pdf" download class="btn btn-outline-light btn-lg">Télécharger mon CV</a>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="apropos" class="py-5">
+        <div class="container">
+            <div class="section-title"><h2>À propos de moi</h2></div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <h3>Abid HAROON</h3>
+                    <p class="lead">Étudiant en BTS SIO (Services Informatiques aux Organisations)</p>
+                    <p>Ayant effectué plusieurs missions en intérim et travaillé pendant les vacances d'été, je suis motivé, adaptable et disponible immédiatement. Je m'intègre facilement et je m'investis pleinement dans les tâches confiées.</p>
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li><strong>Ville :</strong> Gap, France</li>
+                                <li><strong>Adresse :</strong> 12 rue du Docteur Roubaud, 05000 Gap</li>
+                                <li><strong>Email :</strong> kabid8788@gmail.com</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li><strong>Âge :</strong> 21 ans</li>
+                                <li><strong>Téléphone :</strong> 06 41 51 21 64</li>
+                                <li><strong>Disponibilité :</strong> Immédiate</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80" alt="Teamwork" class="img-fluid rounded">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projets" class="py-5 bg-light">
+        <div class="container">
+            <div class="section-title"><h2>Mes expériences</h2></div>
+            <div class="row">
+                <div class="col-md-4 mb-4"><div class="card"><img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?auto=format&fit=crop&w=600&q=80" class="card-img-top"><div class="card-body"><h5>Mission d'inventaire</h5><p>ARTUS Châteauroux - Octobre 2023</p></div></div></div>
+                <div class="col-md-4 mb-4"><div class="card"><img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=600&q=80" class="card-img-top"><div class="card-body"><h5>Employé polyvalent</h5><p>Elis Berry Déols - Juin à Sept 2023</p></div></div></div>
+                <div class="col-md-4 mb-4"><div class="card"><img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=80" class="card-img-top"><div class="card-body"><h5>Bénévolat</h5><p>Croix Rouge & Banque Alimentaire - Avril 2023</p></div></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="py-5">
+        <div class="container">
+            <div class="section-title"><h2>Mon parcours</h2></div>
+            <div>
+                <h4>BTS SIO</h4><p>Depuis septembre 2024 - Institution Beaupeyrat Limoges</p>
+                <h4>Bac Technologique STMG</h4><p>2023 - 2024 - Lycée Aristide Berges Seyssinet-Pariset</p>
+                <h4>1ère STMG</h4><p>2022 - 2023 - Lycée Blaise Pascal Châteauroux</p>
+                <h4>1ère Bac Pro Maintenance des Équipements Industriels</h4><p>2021 - 2022 - Lycée Blaise Pascal Châteauroux</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <div class="section-title"><h2>Contactez-moi</h2></div>
+            <div class="row text-center">
+                <div class="col-md-4"><i class="fas fa-phone fa-2x mb-2 text-primary"></i><p>06 41 51 21 64</p></div>
+                <div class="col-md-4"><i class="fas fa-envelope fa-2x mb-2 text-primary"></i><p>kabid8788@gmail.com</p></div>
+                <div class="col-md-4"><i class="fas fa-map-marker-alt fa-2x mb-2 text-primary"></i><p>Gap, France</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compte rendu -->
+    <!-- Compte rendu -->
+<!-- Compte rendu -->
+<section id="compte-rendu" class="py-5 bg-light">
+  <div class="container">
+    <div class="section-title"><h2>Compte rendu</h2></div>
+
+    <!-- Onglets -->
+    <ul class="nav nav-tabs" id="compteRenduTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="reseau-tab" data-bs-toggle="tab" data-bs-target="#reseau" type="button" role="tab">Réseau</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="dev-tab" data-bs-toggle="tab" data-bs-target="#dev" type="button" role="tab">Développement</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="cyber-tab" data-bs-toggle="tab" data-bs-target="#cyber" type="button" role="tab">Cybersécurité</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="projet-tab" data-bs-toggle="tab" data-bs-target="#projet" type="button" role="tab">Projet</button>
+      </li>
+    </ul>
+
+    <!-- Contenu des onglets -->
+    <div class="tab-content mt-4" id="compteRenduContent">
+      <!-- B1 -->
+      <div class="tab-pane fade show active" id="reseau" role="tabpanel">
+        <p>
+          
+Compte rendu pédagogique : Créer un portfolio avec DeepSeek ou n’importe quelle intelligence Artificielle.
+Introduction
+Aujourd’hui, il est indispensable pour un étudiant en informatique ou dans le numérique d’avoir un portfolio en ligne. Ce site personnel permet de montrer son CV, ses compétences, ses projets et de donner une image professionnelle aux recruteurs.
+Grâce à l’IA, et plus particulièrement avec DeepSeek, il est possible de générer rapidement un portfolio complet sans être un expert en programmation. Ce compte rendu explique, pas à pas, la démarche pour créer son portfolio.
+
+
+1. Préparer les ressources
+Avant de commencer, il faut réunir tous les fichiers nécessaires :
+Un CV à jour au format PDF vous pouvez utiliser CV designer ou le site que vous préférez pour créer votre CV.
+Une photo de profil professionnelle, renommée simplement pour pouvoir la retrouver plus facilement.
+Un dossier local sur l’ordinateur pour ranger tous les fichiers, votre CV et votre photo doivent être placer dans le même fichier que vous avez créé et renommer.
+
+2. Générer le code du portfolio avec DeepSeek
+1.	Se connecter à DeepSeek (ou une autre IA comme ChatGPT ou autre.
+2.	Vous allez envoyer votre CV a Deepseek ou une autre IA celle que vous préférez et vous allez mettre le texte en bas pour créer votre portefolio et après il faut modifier vos informations car L’IA mettras des informations au hasard.
+3.	( Je joins mon CV ici ; utilisez-le comme référence complète. J'ai une photo enregistrée localement et un fichier CV dans mon dossier, et je vous demande de créer pour moi un site web de portfolio personnel de haute qualité et remarquable, utilisant HTML, CSS, JavaScript et Bootstrap 5. Le site doit être entièrement autonome dans un seul fichier HTML (avec tous les CSS et JS intégrés) et inclure des sections essentielles telles que Accueil, À propos de moi, Compétences (présentées visuellement), Projets (avec images et fenêtres contextuelles pour plus de détails), Expérience, Contact, des liens vers les réseaux sociaux et un bouton de téléchargement de CV qui déclenche un téléchargement immédiat sans être bloqué par le navigateur. Utilisez des images de substitution de haute qualité provenant d'Unsplash pour les projets, assurez-vous que tout est bien formulé dans un français correct et que le design général soit professionnel, soigné et visuellement attrayant pour me démarquer)
+4.	Une fois vous avez lancer la génération ca prendras quelque minute pour pouvoir générer votre code une fois le code a été créer vous allez copier le code pour pouvoir le mettre dans un fichier (vous pouvez utiliser document texte ou ce que vous voulez) et après avoir enregistrer votre fichier vous allez modifier les extensions de fichier pour pouvoir changer le code et avoir votre portefolio. Les extensions de votre fichier seront .odt où. Word vous allez renommer votre fichier en Index.html et normalement cela doit être bon. Dans le cas contraire vous allez faire afficher les extensions de fichier et les changer après.
+5.	Une fois cela est fait normalement vous allez avoir une interface avec une photo et tout vos informations avec un lien ou un bouton qui permettras de télécharger votre CV.
+6.	Vous pouvez aussi faire les changements des information sur votre portfolio il faudra modifier le code que vous avez dans votre fichier index.html vous pouvez le faire vous-même mais ça va être plus simple et plus facile si vous demander a DEEPSEEK ou a CHATgpt ce que vous voulez modifier.
+
+5. Héberger le portfolio en ligne
+Jusqu’ici, le site est visible uniquement sur votre ordinateur. Pour qu’il soit accessible par un recruteur, il faut l’héberger.
+•	Pour héberger votre site en ligne il faudra créer un site sur Github et Netlify 
+•	Vous allez envoyer votre CV et votre index.html sur Github.
+•	Une fois cela est fait vous allez créer un compte sur Netlify et vous allez connecter votre Github à Netlify pour pouvoir déployer votre site en ligne.
+•	Connecter Netlify à GitHub pour déployer le site.
+•	Netlify vous donneras une adresse que vous pouvez partager et qui vous permettras d’accéder votre site depuis un autre ordinateur en ligne et qui permettras a d’autres personne aussi de voir votre site et votre CV en ligne avec le lien partager par vous.
+
+
+
+
+
+
+
+
+Conclusion
+Avec DeepSeek ou n’importe quelle IA, il est possible de créer rapidement un portfolio professionnel même sans connaissances techniques poussées.
+Les étapes clés sont :
+1.	Préparer son CV et sa photo.
+2.	Générer le code avec un prompt précis.
+3.	Enregistrer et ouvrir le fichier index.html.
+4.	Personnaliser les informations et les liens.
+5.	Héberger le site en ligne avec GitHub et Netlify.
+Ce tutoriel montre qu’il est aujourd’hui possible, grâce à l’IA, de gagner du temps et de disposer d’un site personnel moderne et efficace, essentiel pour se démarquer lors de recherches de stages ou d’emplois.
+
+
+
+        </p>
+      </div>
+
+      <!-- Développement -->
+      <div class="tab-pane fade" id="dev" role="tabpanel">
+        <p>
+          <a href="compte_rendu.pdf" target="_blank">Voir mon compte rendu</a>
+
+        </p>
+      </div>
+
+      <!-- Cybersécurité -->
+      <div class="tab-pane fade" id="cyber" role="tabpanel">
+        <p>
+          J’ai appris les bases de la cybersécurité : protection des données, gestion des droits d’accès et sécurisation d’un réseau.  
+          Ces connaissances sont essentielles pour garantir la fiabilité d’un système d’information.
+        </p>
+      </div>
+
+      <!-- Projet -->
+      <div class="tab-pane fade" id="projet" role="tabpanel">
+        <p>
+          Ce projet m’a permis de mettre en pratique différentes compétences acquises dans les autres matières.  
+          L’utilisation de l’IA comme support de création m’a donné un aperçu des outils modernes qui facilitent le développement et la conception web.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <h3>Abid HAROON</h3>
+            <p>Étudiant BTS SIO - Motivé, adaptable et disponible immédiatement</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p class="mt-3">&copy; 2025 Abid HAROON. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
