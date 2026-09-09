@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abid HAROON - Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #1a1a2e;
+            --secondary-color: #0f3460;
+            --accent-color: #e94560;
+            --light-color: #f0f5f9;
+            --text-dark: #1e1e2e;
+            --text-light: #f0f5f9;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            background-color: #f8f9fa;
+            scroll-behavior: smooth;
+        }
+        
+        .navbar {
+            background-color: var(--primary-color);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand, .nav-link {
+            color: var(--text-light) !important;
+            font-weight: 600;
+        }
+        
+        .nav-link {
+            margin: 0 10px;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .navbar-toggler {
+            border: none;
+            color: var(--text-light);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(26, 26, 46, 0.9), rgba(26, 26, 46, 0.8)), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80') no-repeat center center/cover;
+            height: 100vh;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .profile-img {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--accent-color);
+            margin: 0 auto 20px;
+            display: block;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .section-padding {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            margin-bottom: 60px;
+            position: relative;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+        }
+        
+        .skill-item {
+            margin-bottom: 25px;
+        }
+        
+        .progress {
+            height: 12px;
+            border-radius: 10px;
+            background-color: #e0e0e0;
+        }
+        
+        .progress-bar {
+            border-radius: 10px;
+            background-color: var(--secondary-color);
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+            margin-top: 2rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: var(--secondary-color);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3.2rem;
+            top: 1.5rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+            border: 4px solid white;
+            box-shadow: 0 0 0 3px var(--secondary-color);
+        }
+        
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 30px;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: none;
+            height: 100%;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-img {
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-card:hover .project-img {
+            transform: scale(1.05);
+        }
+        
+        .contact-form .form-control {
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            padding: 15px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-form .form-control:focus {
+            box-shadow: none;
+            border-color: var(--secondary-color);
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 45px;
+            height: 45px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 45px;
+            margin-right: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background: var(--accent-color);
+            transform: translateY(-5px);
+        }
+        
+        /* Styles pour les comptes rendus */
+        .reports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .report-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            position: relative;
+        }
+        
+        .report-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .report-img {
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            width: 100%;
+        }
+        
+        .report-card:hover .report-img {
+            transform: scale(1.05);
+        }
+        
+        .report-content {
+            padding: 25px;
+        }
+        
+        .report-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .report-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .report-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-sm-custom {
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            border-radius: 20px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary-custom {
+            background-color: var(--secondary-color);
+            color: white;
+            border: 2px solid var(--secondary-color);
+        }
+        
+        .btn-primary-custom:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline-custom {
+            background-color: transparent;
+            color: var(--secondary-color);
+            border: 2px solid var(--secondary-color);
+        }
+        
+        .btn-outline-custom:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .reports-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .reports-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            margin-top: 15px;
+        }
+        
+        .reports-nav {
+            margin-bottom: 40px;
+        }
+        
+        .reports-nav .btn {
+            border-radius: 30px;
+            padding: 8px 20px;
+            margin: 0 5px;
+            transition: all 0.3s;
+        }
+        
+        .reports-nav .btn:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            border-color: var(--secondary-color);
+        }
+        
+        .category-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 60px 0 30px 0;
+            border-left: 5px solid var(--accent-color);
+            padding-left: 20px;
+            scroll-margin-top: 80px;
+        }
+        
+        .category-title:first-of-type {
+            margin-top: 0;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline-light {
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-light:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                height: auto;
+                padding: 120px 0;
+            }
+            
+            .profile-img {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .section-padding {
+                padding: 70px 0;
+            }
+            
+            .reports-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Abid HAROON</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#accueil">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#apropos">À propos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#competences">Compétences</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projets">Projets</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Expérience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#compte-rendu">Comptes rendus</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#deuxieme-annee">2ème année</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="hero">
+        <div class="container hero-content">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Abid HAROON" class="profile-img">
+                    <h1 class="display-4 fw-bold mb-3">Abid HAROON</h1>
+                    <p class="lead fs-4">Étudiant BTS SIO</p>
+                    <p class="mb-4">Motivé, adaptable et disponible immédiatement pour de nouvelles missions</p>
+                    <a href="#contact" class="btn btn-primary btn-lg me-3">Me contacter</a>
+                    <a href="#" class="btn btn-outline-light btn-lg" id="downloadCV">Télécharger mon CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- À propos -->
+    <section id="apropos" class="section-padding">
+        <div class="container">
+            <h2 class="text-center section-title">À propos de moi</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <h3 class="mb-4">Qui suis-je?</h3>
+                    <p>Je suis étudiant en BTS SIO (Services Informatiques aux Organisations) motivé et passionné par l'informatique. Ayant effectué plusieurs missions en intérim et travaillé pendant les vacances d'été, je suis adaptable et disponible immédiatement pour de nouvelles missions. Je m'intègre facilement et je m'investis pleinement dans les tâches qui me sont confiées.</p>
+                    <p>En dehors de mes études, je pratique la boxe anglaise et la musculation, ce qui me permet de développer discipline, rigueur et dépassement de soi. J'apprécie également la musique douce pour la concentration et le bien-être.</p>
+                </div>
+                <div class="col-lg-6">
+                    <h3 class="mb-4">Informations personnelles</h3>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <p><strong><i class="bi bi-person-fill me-2"></i>Nom:</strong> Abid HAROON</p>
+                            <p><strong><i class="bi bi-telephone-fill me-2"></i>Téléphone:</strong> 06 41 51 21 64</p>
+                            <p><strong><i class="bi bi-envelope-fill me-2"></i>Email:</strong> kabid8788@gmail.com</p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <p><strong><i class="bi bi-geo-alt-fill me-2"></i>Adresse:</strong> 12 rue docteur roubaud, 05000 GAP</p>
+                            <p><strong><i class="bi bi-clock-fill me-2"></i>Disponibilité:</strong> Immédiate</p>
+                            <p><strong><i class="bi bi-bookmark-fill me-2"></i>Statut:</strong> Étudiant BTS SIO</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compétences -->
+    <section id="competences" class="section-padding bg-light">
+        <div class="container">
+            <h2 class="text-center section-title">Mes compétences</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <h3 class="mb-4">Savoir-être</h3>
+                    <div class="skill-item"><p class="mb-1">Discipline</p><div class="progress"><div class="progress-bar" style="width:95%"></div></div></div>
+                    <div class="skill-item"><p class="mb-1">Ponctualité</p><div class="progress"><div class="progress-bar" style="width:90%"></div></div></div>
+                    <div class="skill-item"><p class="mb-1">Rigueur et organisation</p><div class="progress"><div class="progress-bar" style="width:85%"></div></div></div>
+                    <div class="skill-item"><p class="mb-1">Capacité d'adaptation</p><div class="progress"><div class="progress-bar" style="width:90%"></div></div></div>
+                    <div class="skill-item"><p class="mb-1">Esprit d'équipe</p><div class="progress"><div class="progress-bar" style="width:88%"></div></div></div>
+                </div>
+                <div class="col-lg-6">
+                    <h3 class="mb-4">Savoir-faire</h3>
+                    <div class="skill-item"><p class="mb-1">Polyvalence</p><div class="progress"><div class="progress-bar" style="width:92%"></div></div></div>
+                    <div class="skill-item"><p class="mb-1">Environnements industriels</p><div class="progress"><div class="progress-bar" style="width:85%"></div></div></div>
+                    <div class="skill-item"><p class="mb-1">Production et manutention</p><div class="progress"><div class="progress-bar" style="width:87%"></div></div></div>
+                    <div class="skill-item"><p class="mb-1">Travail en équipe</p><div class="progress"><div class="progress-bar" style="width:90%"></div></div></div>
+                    <div class="skill-item"><p class="mb-1">Adaptation aux horaires décalés</p><div class="progress"><div class="progress-bar" style="width:88%"></div></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projets -->
+    <section id="projets" class="section-padding">
+        <div class="container">
+            <h2 class="text-center section-title">Mes projets</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-6"><div class="project-card card"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="card-img-top project-img"><div class="card-body"><h5 class="card-title">Site E-commerce</h5><p class="card-text">Développement d'une plateforme e-commerce complète avec panier et système de paiement.</p><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#project1Modal">Voir les détails</button></div></div></div>
+                <div class="col-lg-4 col-md-6"><div class="project-card card"><img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="card-img-top project-img"><div class="card-body"><h5 class="card-title">Application Mobile</h5><p class="card-text">Création d'une application de gestion de tâches avec synchronisation cloud.</p><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#project2Modal">Voir les détails</button></div></div></div>
+                <div class="col-lg-4 col-md-6"><div class="project-card card"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="card-img-top project-img"><div class="card-body"><h5 class="card-title">Tableau de Bord Analytics</h5><p class="card-text">Conception d'un tableau de bord pour visualisation de données marketing.</p><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#project3Modal">Voir les détails</button></div></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expérience -->
+    <section id="experience" class="section-padding bg-light">
+        <div class="container">
+            <h2 class="text-center section-title">Mon expérience</h2>
+            <div class="timeline">
+                <div class="timeline-item"><h4>Mission d'inventaire</h4><h5>ARTUS Châteauroux - Octobre 2023</h5><ul><li>Réalisation de diverses tâches de manutention et d'assistance dans le cadre de projets ponctuels</li><li>Adaptation rapide aux différents rôles et environnement de travail</li><li>Collaboration avec les équipes pour optimiser la productivité et atteindre les objectifs de la mission</li></ul></div>
+                <div class="timeline-item"><h4>Employé polyvalent</h4><h5>Elis berry Déols 36130 - De juin 2023 à septembre 2023</h5><ul><li>Travail en équipe pour assurer le bon déroulement de la production</li><li>Gestion des tâches de manutention et de préparation des commandes</li><li>Suivi des consignes de sécurité et respect des normes de qualité en vigueur</li></ul></div>
+                <div class="timeline-item"><h4>Bénévolat</h4><h5>Croix Rouge et La banque alimentaire Châteauroux - Avril 2023</h5><ul><li>Collectes de l'alimentation dans les grandes surfaces pour des associations</li></ul></div>
+            </div>
+            <h3 class="mt-5 mb-4">Formation</h3>
+            <div class="timeline">
+                <div class="timeline-item"><h4>BTS SIO</h4><h5>Institution Beaupeyrat Limoges - Depuis septembre 2024</h5></div>
+                <div class="timeline-item"><h4>Bac Technologique STMG</h4><h5>Lycée Aristide Berges Seyssinet-Pariset - De septembre 2023 à juin 2024</h5></div>
+                <div class="timeline-item"><h4>1er Technologique STMG</h4><h5>Lycée Blaise Pascal Châteauroux - De 2022 à 2023</h5></div>
+                <div class="timeline-item"><h4>1er BAC professionnel maintenance des équipements industriels</h4><h5>Lycée Blaise Pascal Châteauroux - De 2021 à 2022</h5></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comptes rendus organisés -->
+    <section id="compte-rendu" class="section-padding">
+        <div class="container">
+            <div class="reports-header">
+                <h2 class="text-center section-title">Comptes rendus</h2>
+                <p class="reports-subtitle">Ensemble de mes travaux pratiques et projets académiques, classés par bloc de compétences</p>
+            </div>
+
+            <!-- Navigation rapide -->
+            <div class="reports-nav text-center">
+                <a href="#cat-b1" class="btn btn-outline-secondary btn-sm me-2">Bloc B1</a>
+                <a href="#cat-b2" class="btn btn-outline-secondary btn-sm me-2">Bloc B2</a>
+                <a href="#cat-b3" class="btn btn-outline-secondary btn-sm me-2">Bloc B3</a>
+                <a href="#cat-ap" class="btn btn-outline-secondary btn-sm">Atelier Pro</a>
+            </div>
+
+            <!-- B1 -->
+            <h3 id="cat-b1" class="category-title">Bloc B1 – Bases du développement web</h3>
+            <div class="reports-grid">
+                <div class="report-card"><img src="https://cdn.prod.website-files.com/67053868fc01e494462e71c9/679925e155cb8a7bec0f17fb_deepseek-vs-chatgpt-open-ai.jpg" class="report-img"><div class="report-content"><h5 class="report-title">TP01 – Deepseek</h5><p class="report-description">Introduction aux pratiques professionnelles et aux outils de développement avec Deepseek.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp01Modal">Voir détails</button><a href="compte_rendu.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://www.omega-informatique.net/img/actu/larg/larg_20190906121654reseau.jpg" class="report-img"><div class="report-content"><h5 class="report-title">TP Config</h5><p class="report-description">Configuration et paramétrage des environnements de développement et systèmes.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp02Modal">Voir détails</button><a href="TP_Config.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://etudestech.com/wp-content/uploads/2023/09/adobestock_24625864-scaled.jpeg" class="report-img"><div class="report-content"><h5 class="report-title">HTML 1</h5><p class="report-description">Création de pages web avec HTML5, structure et sémantique du web moderne.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp07Modal">Voir détails</button><a href="TP_HTML.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://kinsta.com/fr/wp-content/uploads/sites/4/2022/07/meilleurs-pratiques-css.jpeg" class="report-img"><div class="report-content"><h5 class="report-title">CSS</h5><p class="report-description">Techniques avancées de mise en page avec CSS Grid, Flexbox et animations.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp09Modal">Voir détails</button><a href="TP_CSS.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://www.shutterstock.com/image-photo/html-css-code-developing-screenshot-600w-279336206.jpg" class="report-img"><div class="report-content"><h5 class="report-title">TP CSS (Atelier 04)</h5><p class="report-description">Approfondissement des feuilles de style CSS.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp12Modal">Voir détails</button><a href="ATELIER04 CSS.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://static.vecteezy.com/ti/vecteur-libre/p1/7559614-illustration-du-developpement-web-et-du-codage-sur-l-ecran-d-ordinateur-avec-le-processus-de-developpement-de-codes-pour-faire-un-site-web-peut-etre-utilise-pour-la-presentation-de-l-animation-de-la-page-de-atterrissage-web-etc-vectoriel.jpg" class="report-img"><div class="report-content"><h5 class="report-title">HTML2</h5><p class="report-description">Approfondissement HTML et bonnes pratiques.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp18Modal">Voir détails</button><a href="HTML2.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://bfm.limoges.fr/sites/bfm_de_limoges/files/media/images/G%C3%A9nerique%20Illustration%20Ateliers%20Thematiques%20Carousel%20-%20Agenda%20-%20Site%20internet2.png" class="report-img"><div class="report-content"><h5 class="report-title">Atelier 07 – Formulaires</h5><p class="report-description">Création et validation de formulaires HTML/CSS.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp19Modal">Voir détails</button><a href="Atelier 07.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://f.maformation.fr/edito/sites/3/2021/10/php.jpeg" class="report-img"><div class="report-content"><h5 class="report-title">Programmer avec PHP</h5><p class="report-description">Programmer avec PHP</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp19Modal">Voir détails</button><a href="S2 B1 Mme beauvallet.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                 <div class="report-card"><img src="" class="report-img"><div class="report-content"><h5 class="report-title"></h5><p class="report-description">Connexion au domaine</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp19Modal">Voir détails</button><a href="connexion au domaine.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://upload.wikimedia.org/wikipedia/fr/d/d9/ANSSI_Logo.svg" class="report-img"><div class="report-content"><h5 class="report-title">Questionnaire</h5><p class="report-description">Questionnaire</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp19Modal">Voir détails</button><a href="ANSSI.html" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://upload.wikimedia.org/wikipedia/fr/d/d9/ANSSI_Logo.svg" class="report-img"><div class="report-content"><h5 class="report-title">ANSSI</h5><p class="report-description">ANSSI</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp19Modal">Voir détails</button><a href="ANSSI.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://f.maformation.fr/edito/sites/3/2021/10/php.jpeg" class="report-img"><div class="report-content"><h5 class="report-title">Bases du langage PHP</h5><p class="report-description"></p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp19Modal">Voir détails</button><a href="Bases du langage PHP.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                  <div class="report-card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEhZHGChAocKBHE82clD32aWMnbUDwJmaN5w&s" class="report-img"><div class="report-content"><h5 class="report-title">Acees base de données</h5><p class="report-description"></p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp19Modal">Voir détails</button><a href="TP_acees_bd.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+		  <div class="report-card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI8m9DIL9LNVf4wtLzYxkKbfGSai4h2_gZdw&s" class="report-img"><div class="report-content"><h5 class="report-title">TP GPO</h5><p class="report-description"></p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp19Modal">Voir détails</button><a href="TP_GPO.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+
+            
+            </div>
+            </div>
+
+            <!-- B2 -->
+            <h3 id="cat-b2" class="category-title">Bloc B2 – Programmation et bases de données</h3>
+            <div class="reports-grid">
+                <div class="report-card"><img src="https://www.nintendo.com/eu/media/images/10_share_images/games_15/wiiu_14/SI_WiiU_3DS_AngryBirdsTrilogy_image1600w.png" class="report-img"><div class="report-content"><h5 class="report-title">Angry Birds</h5><p class="report-description">Développement d'un jeu inspiré d'Angry Birds avec JavaScript.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp03Modal">Voir détails</button><a href="compte_rendu_birds.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnq37KCEspsUldeOvzmO9BfUbYYv7sTPCqkg&s" class="report-img"><div class="report-content"><h5 class="report-title">JAVA</h5><p class="report-description">Programmation orientée objet avec Java, concepts fondamentaux.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp05Modal">Voir détails</button><a href="TP_JAVA.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc2bQwZJUiz5HGZkY80m_8JN8i61wK5goiuw&s" class="report-img"><div class="report-content"><h5 class="report-title">JAVA Ex 1 et 2</h5><p class="report-description">Exercices pratiques avancés en Java, manipulation des structures de données.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp06Modal">Voir détails</button><a href="JAVA.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://miro.medium.com/0*3zXmQf_B3ZyoeOzm" class="report-img"><div class="report-content"><h5 class="report-title">JAVA B1 TP03</h5><p class="report-description">Projet Java avancé, implémentation d'algorithmes.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp08Modal">Voir détails</button><a href="TP JAVA B1 TP03.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://i.ytimg.com/vi/C6fGX-VySy4/sddefault.jpg" class="report-img"><div class="report-content"><h5 class="report-title">SHIFUMI</h5><p class="report-description">Jeu Pierre-Feuille-Ciseaux en JavaScript.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp10Modal">Voir détails</button><a href="TP 04 SHIFUMI.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://www.astuces-aide-informatique.info/wp-content/uploads/2016/03/systemes-exploitation.jpg" class="report-img"><div class="report-content"><h5 class="report-title">Commandes Divers</h5><p class="report-description">Programmation Python et scripts.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp11Modal">Voir détails</button><a href="B1 TP05.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://etudestech.com/wp-content/uploads/2022/12/codage-informatique-scaled.jpeg" class="report-img"><div class="report-content"><h5 class="report-title">TP 5 ALGO (Mme Beauvalet)</h5><p class="report-description">Algorithmique et structures de données.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp14Modal">Voir détails</button><a href="TP5 ALGO.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://infodocbib.net/wp-content/uploads/2020/05/ApprendreLangage2020.png" class="report-img"><div class="report-content"><h5 class="report-title">Algo</h5><p class="report-description">Algorithmes fondamentaux.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp17Modal">Voir détails</button><a href="Algo.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://playpager.com/images/4x3/battleship-4x3.webp" class="report-img"><div class="report-content"><h5 class="report-title">TP Bataille navale</h5><p class="report-description">Jeu de bataille navale en programmation.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp12Modal">Voir détails</button><a href="TP Bataille.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1711112585169/14444d31-94ec-4c4e-95cf-a4cb6453d43d.png" class="report-img"><div class="report-content"><h5 class="report-title">B1 TP 21</h5><p class="report-description">Scénario Linux / programmation système.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp12Modal">Voir détails</button><a href="B1 TP 21.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                 <div class="report-card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQYwMmohCsFsNK5PgB99lU4LrtJqRW4GcQ9A&s" class="report-img"><div class="report-content"><h5 class="report-title">TP 02</h5><p class="report-description">Partition du disque dur</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp12Modal">Voir détails</button><a href="TP Partition.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFvzpZFDfoACtaaH9eYn0AjQA4jpK51gDQYQ&s" class="report-img"><div class="report-content"><h5 class="report-title">TP ZOO</h5><p class="report-description">TD5 – Gestion d'un zoo (POO).</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp12Modal">Voir détails</button><a href="B1 TD5 .pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://www.sqlfr.com/wp-content/uploads/2022/04/sql-1024x572.jpg" class="report-img"><div class="report-content"><h5 class="report-title">Requête SQL</h5><p class="report-description">Manipulation de bases de données avec SQL.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp12Modal">Voir détails</button><a href="requete SQL.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM91T1S4z84bTfnQg-ExIMn9MW_bs43wkg5g&s" class="report-img"><div class="report-content"><h5 class="report-title">Question MySQL</h5><p class="report-description">Exercices de requêtage MySQL.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp12Modal">Voir détails</button><a href="Question sql.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://www.vizee.io/wp-content/uploads/2024/04/infrastructure-informatique.jpg" class="report-img"><div class="report-content"><h5 class="report-title">Techcorp (TP DOS)</h5><p class="report-description">Gestion de projet et méthodologies agiles.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp15Modal">Voir détails</button><a href="TP_DOS.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://blog.planview.com/fr/wp-content/uploads/2020/01/Top-6-Software-Development-Methodologies.jpg" class="report-img"><div class="report-content"><h5 class="report-title">TP Logiciel</h5><p class="report-description">Étude des méthodologies de développement logiciel.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp04Modal">Voir détails</button><a href="TP_Logiciel.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                 <div class="report-card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSEBjjm0KHDCbdqccIrTAnit3p4Trc0sXK2Q&s" class="report-img"><div class="report-content"><h5 class="report-title">CH 5 Exercices de l'application</h5><p class="report-description">CH5 </p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp12Modal">Voir détails</button><a href="CH5.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+            </div>
+
+            <!-- B3 -->
+            <h3 id="cat-b3" class="category-title">Bloc B3 – Infrastructure, réseaux et sécurité</h3>
+            <div class="reports-grid">
+                <div class="report-card"><img src="https://www.shutterstock.com/image-photo/glowing-digital-lock-surrounded-by-600nw-2517566697.jpg" class="report-img"><div class="report-content"><h5 class="report-title">Cybersécurité</h5><p class="report-description">Analyse des vulnérabilités et mise en place de mesures de protection.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp13Modal">Voir détails</button><a href="TP1_B3.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://www.lebetondesactive.fr/wp-content/uploads/2023/11/que-peut-on-faire-avec-un-nas.jpg" class="report-img"><div class="report-content"><h5 class="report-title">NAS</h5><p class="report-description">Configuration et utilisation d'un NAS.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp16Modal">Voir détails</button><a href="NAS.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://www.orange-business.com/sites/default/files/1000x417_la-cartographie-du-si-par-orange-business-services.png" class="report-img"><div class="report-content"><h5 class="report-title">Analyse SI</h5><p class="report-description">Cartographie et analyse de système d'information.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp12Modal">Voir détails</button><a href="ANALYSE SI.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3-uOrZyIEql5-ENxX-cyyk-hEDiMhUCD5zw&s" class="report-img"><div class="report-content"><h5 class="report-title">TP Contrôle à distance</h5><p class="report-description">Mise en place de solutions de contrôle à distance.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp12Modal">Voir détails</button><a href="TP 01 Prise de controle .pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3-uOrZyIEql5-ENxX-cyyk-hEDiMhUCD5zw&s" class="report-img"><div class="report-content"><h5 class="report-title">Documentation technicien</h5><p class="report-description">Rédaction de documentation technique.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp12Modal">Voir détails</button><a href="TP 01 Documentation technicien  - Copie.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3-uOrZyIEql5-ENxX-cyyk-hEDiMhUCD5zw&s" class="report-img"><div class="report-content"><h5 class="report-title">Documentation utilisateur</h5><p class="report-description">Rédaction de documentation utilisateur.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp12Modal">Voir détails</button><a href="TP 01 Documentation utilisateur .pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://www.easeus.com/images/en/screenshot/partition-manager/clone-windows-to-virtual-machine.jpg" class="report-img"><div class="report-content"><h5 class="report-title">TP Clonage</h5><p class="report-description">Clonage de machines virtuelles.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp12Modal">Voir détails</button><a href="TP3 CLONAGE.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://i.ytimg.com/vi/ernQI3fUOPM/maxresdefault.jpg" class="report-img"><div class="report-content"><h5 class="report-title">Wake on Lan</h5><p class="report-description">Configuration du réveil à distance des machines.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp12Modal">Voir détails</button><a href="wake on lan.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://www.ionos.fr/digitalguide/fileadmin/DigitalGuide/Screenshots_2019/what-is-a-fileserver.png" class="report-img"><div class="report-content"><h5 class="report-title">Serveur fichiers</h5><p class="report-description">Mise en place d'un serveur de fichiers.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp12Modal">Voir détails</button><a href="Serveur fichiers.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cd/VirtualBox_Windows_Server_2003_Server_Enterprise_x64_VL_08_01_2025_10_14_47_CENS.png" class="report-img"><div class="report-content"><h5 class="report-title">TP Serveur 2003</h5><p class="report-description">Administration d'un serveur Windows Server 2003.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp12Modal">Voir détails</button><a href="Serveur 2003.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                 <div class="report-card"><img src="https://t4.ftcdn.net/jpg/06/22/33/51/360_F_622335155_t1SnyWoAkoi9C8zlId5tzufGFcmnWe6q.jpg" class="report-img"><div class="report-content"><h5 class="report-title">CH4  TD1</h5><p class="report-description">CH4 TD1</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp12Modal">Voir détails</button><a href="TP_4.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1vkHT5o7u8zBkxw_vDzgFewqMjC_eHibEFA&s" class="report-img"><div class="report-content"><h5 class="report-title">Gestion des droits</h5><p class="report-description">Gestion des droits et permissions.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp12Modal">Voir détails</button><a href="Gestion des droits.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFBgjaITqypryHaYJWbZUPOgntXPy3DfqasA&s" class="report-img"><div class="report-content"><h5 class="report-title">Active Directory</h5><p class="report-description">Mise en place et gestion d'Active Directory.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp12Modal">Voir détails</button><a href="Active directory .pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://www.bitdefender.fr/media/uploads/2019/02/keylogger.png" class="report-img"><div class="report-content"><h5 class="report-title">Keylogger</h5><p class="report-description">Compréhension des risques liés aux keyloggers.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp12Modal">Voir détails</button><a href="TP 06 Keylogger.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://i.ytimg.com/vi/44jnnyaMjnY/maxresdefault.jpg" class="report-img"><div class="report-content"><h5 class="report-title">Gestion des users</h5><p class="report-description">Administration des comptes utilisateurs.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp12Modal">Voir détails</button><a href="gestion des users.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://media.materiel.net/r900/products/MN0005247098_1.jpg" class="report-img"><div class="report-content"><h5 class="report-title">NET GEAR</h5><p class="report-description"> TP Switch manageables</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp12Modal">Voir détails</button><a href="NETGEAR.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                 <div class="report-card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf123FVxeYyyIcqbuVs01-ZmC-SHOp7PXOOw&s" class="report-img"><div class="report-content"><h5 class="report-title"></h5><p class="report-description">DEEP FREEZE</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp12Modal">Voir détails</button><a href="DEEP FREEZE.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                  <div class="report-card"><img src="https://www.img.credit-cooperatif.coop/app/uploads/sites/19/2022/03/11165935/visuel-votre-banque-proteger-votre-smartphone-et-votre-materiel-informatique-hero-mobile-960x580-1.png" class="report-img"><div class="report-content"><h5 class="report-title"></h5><p class="report-description">Protection d'une APP</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp12Modal">Voir détails</button><a href="Proteger_app.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                   <div class="report-card"><img src="https://www.img.credit-cooperatif.coop/app/uploads/sites/19/2022/03/11165935/visuel-votre-banque-proteger-votre-smartphone-et-votre-materiel-informatique-hero-mobile-960x580-1.png" class="report-img"><div class="report-content"><h5 class="report-title"></h5><p class="report-description">Protection d'une APP</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp12Modal">Voir détails</button><a href="Proteger_app.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+		 <div class="report-card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJvVdqvebXo5ioLXCD6QMUsRuSEdE3cLRLrw&s" class="report-img"><div class="report-content"><h5 class="report-title"></h5><p class="report-description">DHCP</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp12Modal">Voir détails</button><a href="DHCP.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+		 <div class="report-card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOROIon1bYQhPjG1X1251BQNTDjj6Pfm2ggg&s" class="report-img"><div class="report-content"><h5 class="report-title"></h5><p class="report-description">VPN</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp12Modal">Voir détails</button><a href="TP VPN.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+
+                
+                
+            
+            </div>
+
+            <!-- Atelier Professionnel -->
+            <h3 id="cat-ap" class="category-title">Atelier Professionnel (AP)</h3>
+            <div class="reports-grid">
+                <div class="report-card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZGJVYBXMUOtHwm_D4bIvq_KfwXPeWKp2gdg&s" class="report-img"><div class="report-content"><h5 class="report-title">Site vitrine</h5><p class="report-description">Création et mise en ligne d'un site vitrine.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp12Modal">Voir détails</button><a href="site vitrine.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT84lvhDtVxt_eL1_M0WHMKEhbGwX5mafZc-g&s" class="report-img"><div class="report-content"><h5 class="report-title">Hébergement</h5><p class="report-description">Hébergement d'un site web.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp12Modal">Voir détails</button><a href="hebergement.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpaMrgRa5QrRyA8gyQChfPPo5o2h3BSzSvbw&s" class="report-img"><div class="report-content"><h5 class="report-title">Transfert</h5><p class="report-description">Transfert de fichiers et déploiement.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp12Modal">Voir détails</button><a href="Transfert.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">PDF</a></div></div></div>
+                <div class="report-card"><img src="https://ircf.fr/files/2021/03/sauvegarde.jpg" class="report-img"><div class="report-content"><h5 class="report-title">Gestionnaire de sauvegarde</h5><p class="report-description">Mise en place de sauvegardes automatisées.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp12Modal">Voir détails</button><a href="gestionnaire.html" target="_blank" class="btn-sm-custom btn-outline-custom">HTML</a></div></div></div>
+                 <div class="report-card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoTkdLR_yDF7lHCHkzTbJDPWAaIkKjIweuRw&s" class="report-img"><div class="report-content"><h5 class="report-title"> Protection du serveur web</h5><p class="report-description">Protection du serveur web.</p><div class="report-actions"><button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp12Modal">Voir détails</button><a href="protection du serveur web.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">HTML</a></div></div></div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Modals pour les TPs (conservés intégralement) -->
+    <div class="modal fade" id="tp01Modal" tabindex="-1" aria-labelledby="tp01ModalLabel" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="tp01ModalLabel">TP01 - Compte rendu Deepseek</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body"><img src="https://cdn.prod.website-files.com/67053868fc01e494462e71c9/679925e155cb8a7bec0f17fb_deepseek-vs-chatgpt-open-ai.jpg" alt="TP01" class="img-fluid mb-3"><h4>Introduction à Deepseek</h4><p>Ce TP présente les fonctionnalités et l'utilisation de Deepseek dans le contexte du développement.</p><h5>Contenu détaillé:</h5><ul><li>Découverte de l'interface Deepseek</li><li>Comparaison avec d'autres outils similaires</li><li>Utilisation pratique dans des projets</li><li>Avantages et limitations</li></ul></div><div class="modal-footer"><a href="compte_rendu.pdf" target="_blank" class="btn btn-primary">Télécharger le PDF</a><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button></div></div></div></div>
+    <div class="modal fade" id="tp02Modal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">TP02 - Config</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://www.omega-informatique.net/img/actu/larg/larg_20190906121654reseau.jpg" class="img-fluid mb-3"><h4>Configuration système</h4><p>TP sur la configuration des environnements de développement.</p></div><div class="modal-footer"><a href="TP_Config.pdf" target="_blank" class="btn btn-primary">Télécharger PDF</a><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button></div></div></div></div>
+    <div class="modal fade" id="tp03Modal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">TP03 - Angry Birds</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://www.nintendo.com/eu/media/images/10_share_images/games_15/wiiu_14/SI_WiiU_3DS_AngryBirdsTrilogy_image1600w.png" class="img-fluid mb-3"><h4>Développement du jeu</h4><p>Création d'un jeu inspiré d'Angry Birds avec JavaScript.</p></div><div class="modal-footer"><a href="compte_rendu_birds.pdf" target="_blank" class="btn btn-primary">Télécharger PDF</a><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button></div></div></div></div>
+    <div class="modal fade" id="tp04Modal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">TP04 - Logiciel</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://blog.planview.com/fr/wp-content/uploads/2020/01/Top-6-Software-Development-Methodologies.jpg" class="img-fluid mb-3"><h4>Méthodologies de développement</h4><p>Étude des cycles de vie et méthodes agiles.</p></div><div class="modal-footer"><a href="TP_Logiciel.pdf" target="_blank" class="btn btn-primary">Télécharger PDF</a><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button></div></div></div></div>
+    <div class="modal fade" id="tp05Modal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">TP05 - JAVA</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnq37KCEspsUldeOvzmO9BfUbYYv7sTPCqkg&s" class="img-fluid mb-3"><h4>Programmation Java</h4><p>Bases de la POO en Java.</p></div><div class="modal-footer"><a href="TP_JAVA.pdf" target="_blank" class="btn btn-primary">Télécharger PDF</a><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button></div></div></div></div>
+    <div class="modal fade" id="tp06Modal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">TP06 - JAVA Ex 1 et 2</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc2bQwZJUiz5HGZkY80m_8JN8i61wK5goiuw&s" class="img-fluid mb-3"><h4>Exercices avancés Java</h4><p>Structures de données et algorithmes.</p></div><div class="modal-footer"><a href="JAVA.pdf" target="_blank" class="btn btn-primary">Télécharger PDF</a><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button></div></div></div></div>
+    <div class="modal fade" id="tp07Modal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">TP07 - HTML 1</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://etudestech.com/wp-content/uploads/2023/09/adobestock_24625864-scaled.jpeg" class="img-fluid mb-3"><h4>Introduction à HTML5</h4><p>Structure et sémantique du web.</p></div><div class="modal-footer"><a href="TP_HTML.pdf" target="_blank" class="btn btn-primary">Télécharger PDF</a><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button></div></div></div></div>
+    <div class="modal fade" id="tp08Modal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">TP08 - JAVA B1 TP03</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://miro.medium.com/0*3zXmQf_B3ZyoeOzm" class="img-fluid mb-3"><h4>Projet Java avancé</h4><p>Implémentation d'algorithmes complexes.</p></div><div class="modal-footer"><a href="TP JAVA B1 TP03.pdf" target="_blank" class="btn btn-primary">Télécharger PDF</a><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button></div></div></div></div>
+    <div class="modal fade" id="tp09Modal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">TP09 - CSS</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://kinsta.com/fr/wp-content/uploads/sites/4/2022/07/meilleurs-pratiques-css.jpeg" class="img-fluid mb-3"><h4>CSS Avancé</h4><p>Flexbox, Grid, animations.</p></div><div class="modal-footer"><a href="TP_CSS.pdf" target="_blank" class="btn btn-primary">Télécharger PDF</a><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button></div></div></div></div>
+    <div class="modal fade" id="tp10Modal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">TP10 - SHIFUMI</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://i.ytimg.com/vi/C6fGX-VySy4/sddefault.jpg" class="img-fluid mb-3"><h4>Jeu Pierre-Feuille-Ciseaux</h4><p>Développement d'un jeu interactif.</p></div><div class="modal-footer"><a href="TP 04 SHIFUMI.pdf" target="_blank" class="btn btn-primary">Télécharger PDF</a><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button></div></div></div></div>
+    <div class="modal fade" id="tp11Modal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">TP11 - Commandes Divers</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://www.astuces-aide-informatique.info/wp-content/uploads/2016/03/systemes-exploitation.jpg" class="img-fluid mb-3"><h4>Programmation Python</h4><p>Variables, fonctions, structures de données.</p></div><div class="modal-footer"><a href="B1 TP05.pdf" target="_blank" class="btn btn-primary">Télécharger PDF</a><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button></div></div></div></div>
+    <div class="modal fade" id="tp12Modal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">TP12 - Détails</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://www.shutterstock.com/image-photo/html-css-code-developing-screenshot-600w-279336206.jpg" class="img-fluid mb-3"><h4>Informations complémentaires</h4><p>Veuillez consulter le document PDF pour le détail.</p></div><div class="modal-footer"><a href="#" target="_blank" class="btn btn-primary">Télécharger PDF</a><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button></div></div></div></div>
+    <div class="modal fade" id="tp13Modal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">TP13 - Cybersécurité</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://www.shutterstock.com/image-photo/glowing-digital-lock-surrounded-by-600nw-2517566697.jpg" class="img-fluid mb-3"><h4>Sécurité informatique</h4><p>Analyse des vulnérabilités et mesures de protection.</p></div><div class="modal-footer"><a href="TP1_B3.pdf" target="_blank" class="btn btn-primary">Télécharger PDF</a><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button></div></div></div></div>
+    <div class="modal fade" id="tp14Modal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">TP14 - TP 5 ALGO</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://etudestech.com/wp-content/uploads/2022/12/codage-informatique-scaled.jpeg" class="img-fluid mb-3"><h4>Algorithmique</h4><p>Algorithmes et structures de données.</p></div><div class="modal-footer"><a href="TP5 ALGO.pdf" target="_blank" class="btn btn-primary">Télécharger PDF</a><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button></div></div></div></div>
+    <div class="modal fade" id="tp15Modal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">TP15 - Techcorp</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://www.vizee.io/wp-content/uploads/2024/04/infrastructure-informatique.jpg" class="img-fluid mb-3"><h4>Gestion de projet</h4><p>Utilisation de Git, GitHub et méthodes agiles.</p></div><div class="modal-footer"><a href="TP_DOS.pdf" target="_blank" class="btn btn-primary">Télécharger PDF</a><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button></div></div></div></div>
+    <div class="modal fade" id="tp16Modal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">TP16 - NAS</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://www.lebetondesactive.fr/wp-content/uploads/2023/11/que-peut-on-faire-avec-un-nas.jpg" class="img-fluid mb-3"><h4>Configuration NAS</h4><p>Mise en place et utilisation d'un serveur NAS.</p></div><div class="modal-footer"><a href="NAS.pdf" target="_blank" class="btn btn-primary">Télécharger PDF</a><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button></div></div></div></div>
+    <div class="modal fade" id="tp17Modal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">TP17 - Algo</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://infodocbib.net/wp-content/uploads/2020/05/ApprendreLangage2020.png" class="img-fluid mb-3"><h4>Algorithmes fondamentaux</h4><p>Installation et configuration de machines virtuelles.</p></div><div class="modal-footer"><a href="Algo.pdf" target="_blank" class="btn btn-primary">Télécharger PDF</a><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button></div></div></div></div>
+    <div class="modal fade" id="tp18Modal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">TP18 - HTML2</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://static.vecteezy.com/ti/vecteur-libre/p1/7559614-illustration-du-developpement-web-et-du-codage-sur-l-ecran-d-ordinateur-avec-le-processus-de-developpement-de-codes-pour-faire-un-site-web-peut-etre-utilise-pour-la-presentation-de-l-animation-de-la-page-de-atterrissage-web-etc-vectoriel.jpg" class="img-fluid mb-3"><h4>HTML avancé</h4><p>Bonnes pratiques et accessibilité.</p></div><div class="modal-footer"><a href="HTML2.pdf" target="_blank" class="btn btn-primary">Télécharger PDF</a><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button></div></div></div></div>
+    <div class="modal fade" id="tp19Modal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">TP19 - Atelier 07</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://bfm.limoges.fr/sites/bfm_de_limoges/files/media/images/G%C3%A9nerique%20Illustration%20Ateliers%20Thematiques%20Carousel%20-%20Agenda%20-%20Site%20internet2.png" class="img-fluid mb-3"><h4>Formulaires HTML/CSS</h4><p>Création et validation de formulaires.</p></div><div class="modal-footer"><a href="Atelier 07.pdf" target="_blank" class="btn btn-primary">Télécharger PDF</a><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button></div></div></div></div>
+
+    <!-- Modals pour les projets -->
+    <div class="modal fade" id="project1Modal" tabindex="-1" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">Site E-commerce</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><p>Détails du projet de site e-commerce avec panier et paiement en ligne.</p></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button></div></div></div></div>
+    <div class="modal fade" id="project2Modal" tabindex="-1" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">Application Mobile</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><p>Application de gestion de tâches avec synchronisation cloud.</p></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button></div></div></div></div>
+    <div class="modal fade" id="project3Modal" tabindex="-1" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">Tableau de Bord Analytics</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><p>Visualisation de données marketing avec graphiques interactifs.</p></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button></div></div></div></div>
+
+    <!-- 2ème année -->
+    <section id="deuxieme-annee" class="section-padding bg-light">
+        <div class="container">
+            <div class="reports-header">
+                <h2 class="text-center section-title">2ème année</h2>
+                <p class="reports-subtitle">Mes travaux et documents de deuxième année de BTS SIO</p>
+            </div>
+            <div class="reports-grid">
+                <div class="report-card"><div class="report-content"><h3 class="report-title"><i class="bi bi-person-workspace me-2"></i>M. Sotoca</h3><p class="report-description">Espace dédié aux cours, TP et documents réalisés avec M. Sotoca.</p><div class="report-actions"><a href="#" class="btn-sm-custom btn-primary-custom">Ajouter un fichier</a></div></div></div>
+                <div class="report-card"><div class="report-content"><h3 class="report-title"><i class="bi bi-person-workspace me-2"></i>Mme Beauvalet</h3><p class="report-description">Espace dédié aux cours, TP et documents réalisés avec Mme Beauvalet.</p><div class="report-actions"><a href="#" class="btn-sm-custom btn-primary-custom">Ajouter un fichier</a></div></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section-padding bg-light">
+        <div class="container">
+            <h2 class="text-center section-title">Contactez-moi</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <form class="contact-form">
+                        <div class="mb-3"><input type="text" class="form-control" placeholder="Votre nom" required></div>
+                        <div class="mb-3"><input type="email" class="form-control" placeholder="Votre email" required></div>
+                        <div class="mb-3"><input type="text" class="form-control" placeholder="Sujet" required></div>
+                        <div class="mb-3"><textarea class="form-control" rows="5" placeholder="Votre message" required></textarea></div>
+                        <button type="submit" class="btn btn-primary">Envoyer le message</button>
+                    </form>
+                </div>
+                <div class="col-lg-6 mt-5 mt-lg-0">
+                    <div class="card"><div class="card-body"><h5 class="card-title">Coordonnées</h5><p class="card-text"><i class="bi bi-geo-alt-fill me-2"></i> 12 rue docteur roubaud, 05000 GAP</p><p class="card-text"><i class="bi bi-telephone-fill me-2"></i> 06 41 51 21 64</p><p class="card-text"><i class="bi bi-envelope-fill me-2"></i> kabid8788@gmail.com</p><div class="social-icons mt-4"><a href="#"><i class="bi bi-linkedin"></i></a><a href="#"><i class="bi bi-github"></i></a><a href="#"><i class="bi bi-twitter"></i></a><a href="#"><i class="bi bi-facebook"></i></a></div></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row"><div class="col-md-6"><h5>Abid HAROON</h5><p>Étudiant BTS SIO motivé et passionné par l'informatique</p></div><div class="col-md-6 text-md-end"><div class="social-icons"><a href="#"><i class="bi bi-linkedin"></i></a><a href="#"><i class="bi bi-github"></i></a><a href="#"><i class="bi bi-twitter"></i></a><a href="#"><i class="bi bi-facebook"></i></a></div></div></div><hr class="mt-4 mb-4" style="background-color: rgba(255,255,255,0.2);"><div class="row"><div class="col-md-6"><p>&copy; 2023 Abid HAROON. Tous droits réservés.</p></div><div class="col-md-6 text-md-end"><a href="#" class="text-light me-3">Mentions légales</a><a href="#" class="text-light">Politique de confidentialité</a></div></div><div class="text-center mt-4"><p>Ce portfolio a été créé avec HTML, CSS, JavaScript et Bootstrap</p></div>
+        </div>
+    </footer>
+
+    <div class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const backToTopButton = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => { window.pageYOffset > 300 ? backToTopButton.classList.add('show') : backToTopButton.classList.remove('show'); });
+        backToTopButton.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        window.addEventListener('scroll', function() { if (window.scrollY > 50) { document.querySelector('.navbar').style.padding = '10px 0'; document.querySelector('.navbar').style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)'; } else { document.querySelector('.navbar').style.padding = '15px 0'; document.querySelector('.navbar').style.boxShadow = 'none'; } });
+        document.getElementById('downloadCV').addEventListener('click', function(e) { e.preventDefault(); const link = document.createElement('a'); link.href = 'CV_Abid_HAROON.pdf'; link.download = 'CV_Abid_HAROON.pdf'; document.body.appendChild(link); link.click(); document.body.removeChild(link); });
+        document.querySelector('.contact-form').addEventListener('submit', function(e) { e.preventDefault(); alert('Votre message a été envoyé avec succès ! Je vous répondrai très rapidement.'); this.reset(); });
+    </script>
+</body>
+</html>
