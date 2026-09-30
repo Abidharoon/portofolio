@@ -78,6 +78,14 @@
             text-shadow: 0 0 8px var(--primary-cyan);
         }
 
+        /* Menu sur une ligne (ajout Veille technologique) */
+        @media (min-width: 992px) {
+            .navbar .nav-link { white-space: nowrap; }
+        }
+        @media (min-width: 992px) and (max-width: 1399px) {
+            .navbar .nav-link { margin: 0 3px; font-size: 0.82rem; }
+        }
+
         .navbar .nav-link:hover::after {
             width: 100%;
         }
@@ -502,6 +510,7 @@
                     <li class="nav-item"><a class="nav-link" href="#experience">Expérience</a></li>
                     <li class="nav-item"><a class="nav-link" href="#compte-rendu">1ère année</a></li>
                     <li class="nav-item"><a class="nav-link" href="#annee2">2ème Année</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#veille">Veille technologique</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
             </div>
@@ -931,6 +940,50 @@
             <div class="text-center mt-5 text-muted">
                 <i class="bi bi-info-circle me-2"></i> Ces zones sont modifiables : vous pouvez y ajouter des liens, des PDF, ou des descriptions.
             </div>
+        </div>
+    </section>
+
+    <!-- ==================== VEILLE TECHNOLOGIQUE ==================== -->
+    <section id="veille" class="section-padding">
+        <style>#veille .text-muted{color:var(--text-muted)!important;}</style>
+        <div class="container">
+            <div class="text-center"><h2 class="section-title">Veille technologique</h2></div>
+            <p class="text-center text-muted mb-5">Sujet : <strong style="color:var(--text-light);">Les innovations dans l'automobile en rapport avec la technologie</strong><br>Suivi de janvier 2025 à septembre 2026 · Mise à jour chaque mois</p>
+
+            <div class="row g-4 mb-4">
+                <div class="col-lg-7">
+                    <div class="bg-dark-card h-100">
+                        <h3 class="mb-3" style="color:var(--primary-cyan);font-size:1.3rem;"><i class="bi bi-car-front-fill me-2"></i>La voiture devient un ordinateur sur roues</h3>
+                        <p class="text-muted">Batteries nouvelle génération, robotaxis, IA embarquée, logiciel mis à jour à distance, recharge en 5 minutes, cybersécurité : je suis l'évolution de la voiture sous l'angle de l'informatique et du métier de technicien SISR (réseaux, serveurs, sécurité).</p>
+                        <p class="mb-0 text-muted"><i class="bi bi-question-circle me-2" style="color:var(--secondary-neon);"></i><em>Problématique : comment les technologies numériques transforment-elles la voiture, et quels nouveaux enjeux pour les professionnels de l'informatique ?</em></p>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="bg-dark-card h-100">
+                        <h3 class="mb-3" style="color:var(--primary-cyan);font-size:1.3rem;"><i class="bi bi-tools me-2"></i>Mes outils de veille</h3>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge-neon">Google Alertes</span><span class="badge-neon">Feedly</span><span class="badge-neon">Inoreader</span>
+                            <span class="badge-neon">X / LinkedIn</span><span class="badge-neon">Raindrop.io</span><span class="badge-neon">YouTube</span>
+                        </div>
+                        <p class="text-muted mt-3 mb-0" style="font-size:0.85rem;"><i class="bi bi-calendar-week me-2" style="color:var(--primary-cyan);"></i>Routine : 20 min lundi et mercredi, 1 h le vendredi pour trier, vérifier et remplir le tableau de veille.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6"><div class="course-zone h-100" style="margin-top:0;"><h4 style="font-size:1rem;"><i class="bi bi-battery-charging me-2"></i>Batteries</h4><p class="text-muted mb-0" style="font-size:0.85rem;">Batterie solide : 1 205 km sans recharge en prototype. Sodium-ion : 1ʳᵉ voiture de série en 2026.</p></div></div>
+                <div class="col-lg-4 col-md-6"><div class="course-zone h-100" style="margin-top:0;"><h4 style="font-size:1rem;"><i class="bi bi-sign-turn-right me-2"></i>Conduite autonome</h4><p class="text-muted mb-0" style="font-size:0.85rem;">Waymo dans 11 villes, FSD de Tesla homologué aux Pays-Bas, navette autonome sur l'A10.</p></div></div>
+                <div class="col-lg-4 col-md-6"><div class="course-zone h-100" style="margin-top:0;"><h4 style="font-size:1rem;"><i class="bi bi-cpu me-2"></i>IA embarquée</h4><p class="text-muted mb-0" style="font-size:0.85rem;">Assistant Gemini dans la Mercedes CLA, NVIDIA Alpamayo, CES 2026 dominé par l'IA.</p></div></div>
+                <div class="col-lg-4 col-md-6"><div class="course-zone h-100" style="margin-top:0;"><h4 style="font-size:1rem;"><i class="bi bi-code-slash me-2"></i>Logiciel (SDV)</h4><p class="text-muted mb-0" style="font-size:0.85rem;">Architecture zonale VW / Rivian, mises à jour OTA, BMW Neue Klasse et ses 4 super-calculateurs.</p></div></div>
+                <div class="col-lg-4 col-md-6"><div class="course-zone h-100" style="margin-top:0;"><h4 style="font-size:1rem;"><i class="bi bi-lightning-charge me-2"></i>Recharge</h4><p class="text-muted mb-0" style="font-size:0.85rem;">BYD Flash Charging : 10 → 70 % en 5 min. Recharge bidirectionnelle V2G avec la Renault 5.</p></div></div>
+                <div class="col-lg-4 col-md-6"><div class="course-zone h-100" style="margin-top:0;"><h4 style="font-size:1rem;"><i class="bi bi-shield-lock me-2"></i>Cybersécurité</h4><p class="text-muted mb-0" style="font-size:0.85rem;">Faille Subaru Starlink (contrôle à distance), règlement ONU R155 obligatoire.</p></div></div>
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="veille.html" class="btn btn-neon me-2 mb-2"><i class="bi bi-table me-2"></i>Consulter ma veille complète</a>
+                <a href="veille.html#tableau" class="btn btn-neon-outline mb-2">Tableau de veille</a>
+            </div>
+            <p class="text-center text-muted mt-3" style="font-size:0.8rem;">Méthodologie · paramétrage des outils · fiabilité des sources · tableau de veille filtrable · synthèse &amp; analyse critique</p>
         </div>
     </section>
 
