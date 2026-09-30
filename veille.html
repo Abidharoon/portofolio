@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veille technologique – Innovations automobiles | Abid HAROON</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0b0e1a;
+            --bg-card: #141a2b;
+            --bg-card-2: #1a2236;
+            --primary-cyan: #00d4ff;
+            --secondary-neon: #7b2ffc;
+            --accent-pink: #ff2d75;
+            --accent-green: #2cf5a0;
+            --accent-yellow: #ffc94d;
+            --text-light: #e0e8f0;
+            --text-muted: #8a9bb5;
+            --border-glow: rgba(0, 212, 255, 0.3);
+        }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            font-size: 0.93rem;
+            line-height: 1.65;
+        }
+        a { color: var(--primary-cyan); }
+        a:hover { color: #fff; }
+        .text-muted { color: var(--text-muted) !important; }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(11, 14, 26, 0.92) !important;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-glow);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.1);
+        }
+        .navbar-brand {
+            font-family: 'Orbitron', sans-serif; font-weight: 700;
+            color: var(--primary-cyan) !important;
+            text-shadow: 0 0 15px var(--primary-cyan);
+        }
+        .navbar .nav-link { color: var(--text-light) !important; font-size: 0.82rem; margin: 0 4px; }
+        .navbar .nav-link:hover { color: var(--primary-cyan) !important; text-shadow: 0 0 8px var(--primary-cyan); }
+
+        /* Hero */
+        .hero {
+            position: relative; padding: 150px 0 90px; text-align: center;
+            background: radial-gradient(circle at 20% 30%, #0f1a2e, #05080f);
+            overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
+        }
+        .hero > .container { position: relative; z-index: 2; }
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif; font-weight: 700; letter-spacing: 2px;
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.45);
+        }
+        .hero .kicker { color: var(--primary-cyan); letter-spacing: 4px; text-transform: uppercase; font-size: 0.8rem; }
+        .hero .car-icon { font-size: 3.5rem; color: var(--primary-cyan); text-shadow: 0 0 30px var(--primary-cyan); }
+
+        .section-padding { padding: 80px 0; scroll-margin-top: 60px; }
+        .section-alt { background: #0d1120; }
+        .section-title {
+            font-family: 'Orbitron', sans-serif; font-weight: 700; color: var(--primary-cyan);
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+            margin-bottom: 50px; position: relative; display: inline-block;
+        }
+        .section-title::after {
+            content: ''; position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%);
+            width: 80px; height: 3px;
+            background: linear-gradient(90deg, var(--primary-cyan), var(--secondary-neon));
+            box-shadow: 0 0 20px var(--primary-cyan);
+        }
+        .step-num {
+            font-family: 'Orbitron', sans-serif; color: var(--secondary-neon);
+            font-size: 0.8rem; letter-spacing: 3px; display: block; margin-bottom: 6px;
+        }
+        h3.sub, h4.sub { font-family: 'Orbitron', sans-serif; color: var(--primary-cyan); font-size: 1.15rem; }
+
+        .card-neon {
+            background: var(--bg-card); border: 1px solid rgba(0, 212, 255, 0.15);
+            border-radius: 18px; padding: 26px; height: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45); transition: 0.3s;
+        }
+        .card-neon:hover { border-color: var(--primary-cyan); box-shadow: 0 0 30px rgba(0, 212, 255, 0.12); }
+        .card-neon h5 { color: var(--primary-cyan); font-family: 'Orbitron', sans-serif; font-size: 1rem; }
+        .card-neon .ico { font-size: 1.8rem; color: var(--secondary-neon); }
+
+        /* Stats */
+        .stat {
+            background: var(--bg-card); border-radius: 18px; padding: 22px 12px; text-align: center;
+            border: 1px solid rgba(123, 47, 252, 0.3);
+        }
+        .stat .num { font-family: 'Orbitron', sans-serif; font-size: 2.1rem; color: var(--primary-cyan); text-shadow: 0 0 15px rgba(0,212,255,.5); }
+        .stat .lbl { color: var(--text-muted); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Cycle de veille */
+        .cycle { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; }
+        .cycle-step {
+            background: var(--bg-card); border-radius: 16px; padding: 18px; position: relative;
+            border-top: 3px solid var(--primary-cyan);
+        }
+        .cycle-step:nth-child(even) { border-top-color: var(--secondary-neon); }
+        .cycle-step .n { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: var(--primary-cyan); opacity: .8; }
+        .cycle-step h6 { font-family: 'Orbitron', sans-serif; font-size: .85rem; margin: 6px 0; color: #fff; }
+        .cycle-step p { font-size: .8rem; color: var(--text-muted); margin: 0; }
+
+        /* Planning */
+        .planning { width: 100%; border-collapse: separate; border-spacing: 6px; }
+        .planning th { font-family: 'Orbitron', sans-serif; font-size: .75rem; color: var(--primary-cyan); text-align: center; }
+        .planning td {
+            background: var(--bg-card-2); border-radius: 10px; padding: 10px; font-size: .78rem; vertical-align: top;
+            border-left: 3px solid var(--secondary-neon); color: var(--text-light); min-width: 120px;
+        }
+        .planning td.off { background: transparent; border-left: 1px dashed rgba(138,155,181,.3); color: var(--text-muted); text-align: center; }
+
+        /* Config blocks (paramétrage) */
+        .config {
+            background: #070a14; border: 1px solid rgba(0, 212, 255, 0.25); border-radius: 12px;
+            font-size: .78rem; overflow: hidden; margin-top: 12px;
+        }
+        .config .bar {
+            background: #111830; padding: 7px 12px; display: flex; gap: 6px; align-items: center;
+            color: var(--text-muted); font-size: .72rem; border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+        }
+        .config .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+        .config .body { padding: 12px 14px; }
+        .config .row-cfg { display: flex; justify-content: space-between; gap: 12px; padding: 4px 0; border-bottom: 1px dashed rgba(138,155,181,.15); }
+        .config .row-cfg:last-child { border-bottom: 0; }
+        .config .k { color: var(--text-muted); }
+        .config .v { color: var(--accent-green); text-align: right; }
+        .config code { color: var(--accent-yellow); background: transparent; font-size: .78rem; }
+        .folder { color: var(--primary-cyan); }
+        .tool-tag {
+            display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: .68rem;
+            border: 1px solid var(--secondary-neon); color: #cdb8ff; margin: 2px 2px 0 0;
+        }
+
+        /* Tables */
+        .table-wrap { overflow-x: auto; border-radius: 16px; border: 1px solid rgba(0, 212, 255, 0.2); }
+        table.neon { width: 100%; border-collapse: collapse; font-size: .78rem; min-width: 980px; }
+        table.neon th {
+            background: #111830; color: var(--primary-cyan); font-family: 'Orbitron', sans-serif;
+            font-size: .7rem; letter-spacing: .5px; padding: 12px 10px; text-align: left; position: sticky; top: 0;
+            cursor: default; white-space: nowrap;
+        }
+        table.neon th.sortable { cursor: pointer; }
+        table.neon th.sortable:hover { color: #fff; }
+        table.neon td { padding: 11px 10px; border-top: 1px solid rgba(138,155,181,.12); vertical-align: top; color: var(--text-light); }
+        table.neon tr:hover td { background: rgba(0, 212, 255, 0.04); }
+        table.neon td.date { white-space: nowrap; color: var(--accent-yellow); }
+        table.neon td .src { color: var(--text-muted); font-size: .72rem; }
+        .cat {
+            display: inline-block; padding: 2px 9px; border-radius: 20px; font-size: .66rem; font-weight: 600; white-space: nowrap;
+        }
+        .cat-batt { background: rgba(44,245,160,.15); color: var(--accent-green); border: 1px solid rgba(44,245,160,.4); }
+        .cat-auto { background: rgba(0,212,255,.12); color: var(--primary-cyan); border: 1px solid rgba(0,212,255,.4); }
+        .cat-ia   { background: rgba(123,47,252,.18); color: #c3a4ff; border: 1px solid rgba(123,47,252,.5); }
+        .cat-rech { background: rgba(255,201,77,.12); color: var(--accent-yellow); border: 1px solid rgba(255,201,77,.4); }
+        .cat-cyber{ background: rgba(255,45,117,.14); color: #ff7aa8; border: 1px solid rgba(255,45,117,.45); }
+        .cat-sdv  { background: rgba(255,255,255,.07); color: #fff; border: 1px solid rgba(255,255,255,.3); }
+        .cat-regl { background: rgba(255,140,0,.12); color: #ffae4d; border: 1px solid rgba(255,140,0,.4); }
+        .imp { color: var(--accent-yellow); letter-spacing: 1px; white-space: nowrap; }
+        .kw { color: var(--text-muted); font-size: .7rem; }
+
+        .filters { display: flex; flex-wrap: wrap; gap: 8px; }
+        .filter-btn {
+            background: transparent; border: 1px solid rgba(138,155,181,.4); color: var(--text-light);
+            padding: 5px 14px; border-radius: 30px; font-size: .75rem; transition: .2s;
+        }
+        .filter-btn:hover, .filter-btn.active { border-color: var(--primary-cyan); color: var(--bg-dark); background: var(--primary-cyan); box-shadow: 0 0 15px rgba(0,212,255,.4); }
+        .search {
+            background: var(--bg-card); border: 1px solid rgba(0,212,255,.25); color: var(--text-light);
+            border-radius: 30px; padding: 7px 16px; font-size: .8rem; width: 100%; max-width: 320px;
+        }
+        .search:focus { outline: none; border-color: var(--primary-cyan); box-shadow: 0 0 15px rgba(0,212,255,.2); }
+        .search::placeholder { color: var(--text-muted); }
+
+        /* Month chart */
+        .months { display: flex; align-items: flex-end; gap: 6px; height: 175px; padding: 10px 4px 4px; overflow-x: auto; }
+        .month { flex: 1 0 30px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
+        .month .b {
+            width: 100%; max-width: 34px; border-radius: 6px 6px 0 0;
+            background: linear-gradient(180deg, var(--primary-cyan), var(--secondary-neon));
+            box-shadow: 0 0 12px rgba(0,212,255,.35); min-height: 3px;
+        }
+        .month .c { font-size: .7rem; color: var(--primary-cyan); margin-bottom: 3px; }
+        .month .m { font-size: .62rem; color: var(--text-muted); margin-top: 5px; white-space: nowrap; }
+
+        /* Trends */
+        .trend { border-left: 3px solid var(--primary-cyan); padding-left: 16px; margin-bottom: 26px; }
+        .trend h5 { font-family: 'Orbitron', sans-serif; font-size: .95rem; color: #fff; }
+        .state { font-size: .7rem; padding: 2px 10px; border-radius: 20px; margin-left: 6px; vertical-align: middle; }
+        .st-prod { background: rgba(44,245,160,.15); color: var(--accent-green); }
+        .st-deploy { background: rgba(0,212,255,.15); color: var(--primary-cyan); }
+        .st-proto { background: rgba(255,201,77,.15); color: var(--accent-yellow); }
+        .avis { background: rgba(123,47,252,.1); border-radius: 10px; padding: 10px 14px; font-size: .82rem; margin-top: 8px; }
+        .avis b { color: #c3a4ff; }
+
+        .stars { color: var(--accent-yellow); letter-spacing: 1px; }
+        .pro { color: var(--accent-green); }
+        .con { color: #ff7aa8; }
+        ul.clean { padding-left: 1.1rem; margin: 0; }
+        ul.clean li { margin-bottom: 4px; }
+
+        footer { border-top: 1px solid rgba(0, 212, 255, 0.1); padding: 36px 0; text-align: center; color: var(--text-muted); font-size: .8rem; }
+        .btn-neon {
+            border: 2px solid var(--primary-cyan); color: var(--primary-cyan); background: transparent;
+            padding: 9px 24px; border-radius: 50px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+            font-size: .78rem; text-decoration: none; display: inline-block; transition: .3s;
+        }
+        .btn-neon:hover { background: var(--primary-cyan); color: #0b0e1a; box-shadow: 0 0 30px var(--primary-cyan); }
+        .note {
+            border: 1px dashed rgba(255,201,77,.45); border-radius: 12px; padding: 12px 16px; color: var(--text-light);
+            background: rgba(255,201,77,.05); font-size: .82rem;
+        }
+        @media (max-width: 768px) {
+            .hero { padding: 120px 0 60px; }
+            .section-padding { padding: 55px 0; }
+            .stat .num { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ==================== NAVIGATION ==================== -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="./">Abid HAROON</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#vNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="vNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="./#veille"><i class="bi bi-arrow-left"></i> Portfolio</a></li>
+                <li class="nav-item"><a class="nav-link" href="#sujet">Sujet</a></li>
+                <li class="nav-item"><a class="nav-link" href="#methode">Méthode</a></li>
+                <li class="nav-item"><a class="nav-link" href="#outils">Outils</a></li>
+                <li class="nav-item"><a class="nav-link" href="#sources">Sources</a></li>
+                <li class="nav-item"><a class="nav-link" href="#tableau">Tableau de veille</a></li>
+                <li class="nav-item"><a class="nav-link" href="#synthese">Synthèse</a></li>
+                <li class="nav-item"><a class="nav-link" href="#conclusion">Conclusion</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- ==================== HERO ==================== -->
+<header class="hero">
+    <div class="container">
+        <div class="car-icon mb-3"><i class="bi bi-car-front-fill"></i></div>
+        <p class="kicker mb-2">Veille technologique · BTS SIO SISR</p>
+        <h1 class="display-5 mb-3">Les innovations dans l'automobile</h1>
+        <p class="lead mb-1">Quand la voiture devient un ordinateur sur roues</p>
+        <p class="text-muted mb-4">Batteries, conduite autonome, IA embarquée, logiciel, recharge, cybersécurité</p>
+        <div class="row g-3 justify-content-center mt-2" id="stats">
+            <div class="col-6 col-md-3 col-lg-2"><div class="stat"><div class="num" id="stArticles">–</div><div class="lbl">articles retenus</div></div></div>
+            <div class="col-6 col-md-3 col-lg-2"><div class="stat"><div class="num" id="stSources">–</div><div class="lbl">sources</div></div></div>
+            <div class="col-6 col-md-3 col-lg-2"><div class="stat"><div class="num">6</div><div class="lbl">outils de veille</div></div></div>
+            <div class="col-6 col-md-3 col-lg-2"><div class="stat"><div class="num">7</div><div class="lbl">thématiques</div></div></div>
+        </div>
+    </div>
+</header>
+
+<!-- ==================== 1. SUJET ==================== -->
+<section id="sujet" class="section-padding">
+    <div class="container">
+        <div class="text-center"><h2 class="section-title">1. Le sujet</h2></div>
+        <div class="row g-4">
+            <div class="col-lg-7">
+                <div class="card-neon">
+                    <span class="step-num">POURQUOI CE SUJET ?</span>
+                    <p>Venant du monde de la logistique et du transport de véhicules, je côtoie les voitures au quotidien. Aujourd'hui, une voiture récente contient <strong>des dizaines de calculateurs, des millions de lignes de code, une connexion 4G/5G et des mises à jour à distance (OTA)</strong>. Elle est devenue un véritable système d'information roulant.</p>
+                    <p class="mb-0">Pour un technicien <strong>SISR</strong>, c'est un terrain directement lié à mon métier : <strong>réseaux embarqués</strong>, <strong>serveurs et cloud</strong> des constructeurs, <strong>cybersécurité</strong> des véhicules connectés, <strong>gestion de flotte</strong> et <strong>infrastructures de recharge</strong> connectées.</p>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="card-neon">
+                    <span class="step-num">PROBLÉMATIQUE</span>
+                    <p class="fs-6" style="color:#fff;">« Comment les technologies numériques (IA, logiciel, connectivité, nouvelles batteries) transforment-elles la voiture, et quels nouveaux enjeux cela crée-t-il pour les professionnels de l'informatique ? »</p>
+                    <span class="step-num mt-3">PÉRIMÈTRE</span>
+                    <ul class="clean text-muted">
+                        <li>Période suivie : <strong style="color:#fff;">janvier 2025 → septembre 2026</strong></li>
+                        <li>Zones : Europe, États-Unis, Chine</li>
+                        <li>Langues : français et anglais</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <h4 class="sub mt-5 mb-3 text-center">Les 7 axes surveillés</h4>
+        <div class="row g-3">
+            <div class="col-6 col-md-4 col-lg"><div class="card-neon text-center"><i class="bi bi-battery-charging ico"></i><h5 class="mt-2">Batteries</h5><p class="text-muted small mb-0">Solide, sodium-ion, densité</p></div></div>
+            <div class="col-6 col-md-4 col-lg"><div class="card-neon text-center"><i class="bi bi-sign-turn-right ico"></i><h5 class="mt-2">Conduite autonome</h5><p class="text-muted small mb-0">Robotaxis, niveaux 2 à 4</p></div></div>
+            <div class="col-6 col-md-4 col-lg"><div class="card-neon text-center"><i class="bi bi-cpu ico"></i><h5 class="mt-2">IA embarquée</h5><p class="text-muted small mb-0">Assistants, puces</p></div></div>
+            <div class="col-6 col-md-4 col-lg"><div class="card-neon text-center"><i class="bi bi-code-slash ico"></i><h5 class="mt-2">Logiciel (SDV)</h5><p class="text-muted small mb-0">Architecture zonale, OTA</p></div></div>
+            <div class="col-6 col-md-4 col-lg"><div class="card-neon text-center"><i class="bi bi-lightning-charge ico"></i><h5 class="mt-2">Recharge</h5><p class="text-muted small mb-0">Mégawatt, V2G</p></div></div>
+            <div class="col-6 col-md-4 col-lg"><div class="card-neon text-center"><i class="bi bi-shield-lock ico"></i><h5 class="mt-2">Cybersécurité</h5><p class="text-muted small mb-0">Failles, R155</p></div></div>
+            <div class="col-6 col-md-4 col-lg"><div class="card-neon text-center"><i class="bi bi-bank ico"></i><h5 class="mt-2">Réglementation</h5><p class="text-muted small mb-0">UE 2035, homologations</p></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== 2. MÉTHODE ==================== -->
+<section id="methode" class="section-padding section-alt">
+    <div class="container">
+        <div class="text-center"><h2 class="section-title">2. Ma méthodologie</h2></div>
+        <p class="text-center text-muted mb-4">La veille technologique est un processus <strong>continu</strong> : je surveille, je collecte, je trie, j'analyse puis je partage.</p>
+
+        <div class="cycle mb-5">
+            <div class="cycle-step"><div class="n">01</div><h6>Définir le besoin</h6><p>Choix du sujet, des 7 axes et de la liste de mots-clés FR/EN.</p></div>
+            <div class="cycle-step"><div class="n">02</div><h6>Collecter</h6><p>Alertes Google, flux RSS dans Feedly, comptes X/LinkedIn, vidéos.</p></div>
+            <div class="cycle-step"><div class="n">03</div><h6>Trier & vérifier</h6><p>Je garde l'info si elle est récente, sourcée et recoupée par une 2ᵉ source.</p></div>
+            <div class="cycle-step"><div class="n">04</div><h6>Stocker</h6><p>Archivage dans Raindrop.io avec tags + ajout au tableau de veille.</p></div>
+            <div class="cycle-step"><div class="n">05</div><h6>Analyser</h6><p>Résumé, niveau d'importance, avis critique, lien avec l'informatique.</p></div>
+            <div class="cycle-step"><div class="n">06</div><h6>Diffuser</h6><p>Publication sur ce portfolio, mise à jour de la synthèse chaque mois.</p></div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-7">
+                <div class="card-neon">
+                    <h4 class="sub mb-3"><i class="bi bi-calendar-week me-2"></i>Ma routine hebdomadaire</h4>
+                    <div style="overflow-x:auto;">
+                    <table class="planning">
+                        <tr><th>Lundi</th><th>Mercredi</th><th>Vendredi</th><th>Dimanche</th></tr>
+                        <tr>
+                            <td><b>20 min</b><br>Lecture du résumé Google Alertes (mail du jour) + tri des articles dans Feedly</td>
+                            <td><b>20 min</b><br>Fil X / LinkedIn (listes « Auto-Tech »), sauvegarde dans Raindrop</td>
+                            <td><b>1 h</b><br>Vérification des infos retenues, ajout au tableau de veille, résumé + importance</td>
+                            <td><b>15 min</b><br>1 vidéo ou podcast de la semaine (YouTube)</td>
+                        </tr>
+                    </table>
+                    </div>
+                    <p class="text-muted small mt-3 mb-0"><i class="bi bi-arrow-repeat me-1"></i>Chaque fin de mois : mise à jour de la partie « Synthèse & tendances » et du graphique de régularité.</p>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="card-neon">
+                    <h4 class="sub mb-3"><i class="bi bi-key me-2"></i>Stratégie de mots-clés</h4>
+                    <p class="small text-muted mb-2">J'utilise les opérateurs de recherche avancée (guillemets, OR, signe moins) pour éviter le bruit.</p>
+                    <div class="config">
+                        <div class="bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>&nbsp; requêtes.txt</div>
+                        <div class="body">
+                            <code>"batterie solide" OR "solid-state battery"</code><br>
+                            <code>"conduite autonome" OR robotaxi -jeu</code><br>
+                            <code>"véhicule défini par logiciel" OR "software-defined vehicle"</code><br>
+                            <code>"voiture connectée" (faille OR piratage OR cyberattaque)</code><br>
+                            <code>"recharge bidirectionnelle" OR V2G</code><br>
+                            <code>"sodium-ion" voiture</code><br>
+                            <code>"FSD" Tesla Europe homologation</code>
+                        </div>
+                    </div>
+                    <p class="small text-muted mt-3 mb-0"><b style="color:#fff">Critères de sélection :</b> info de moins de 3 mois, source identifiée, chiffre ou fait vérifiable, impact réel sur la filière.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== 3. OUTILS ==================== -->
+<section id="outils" class="section-padding">
+    <div class="container">
+        <div class="text-center"><h2 class="section-title">3. Outils & paramétrage</h2></div>
+        <p class="text-center text-muted mb-5">J'utilise 6 outils complémentaires. Pour chacun, voici <strong>comment je l'ai configuré</strong>.</p>
+
+        <div class="row g-4">
+            <!-- Google Alertes -->
+            <div class="col-lg-6">
+                <div class="card-neon">
+                    <h5><i class="bi bi-bell-fill me-2"></i>Google Alertes <span class="tool-tag">Alertes automatiques</span></h5>
+                    <p class="small text-muted mb-1">Google m'envoie les nouveaux articles qui contiennent mes mots-clés. J'ai créé 5 alertes.</p>
+                    <div class="config">
+                        <div class="bar"><i class="bi bi-google"></i>&nbsp; google.fr/alerts — Options de l'alerte</div>
+                        <div class="body">
+                            <div class="row-cfg"><span class="k">Requête</span><span class="v">"batterie solide" OR "solid-state battery"</span></div>
+                            <div class="row-cfg"><span class="k">Fréquence</span><span class="v">Une fois par jour au maximum</span></div>
+                            <div class="row-cfg"><span class="k">Sources</span><span class="v">Actualités + Blogs</span></div>
+                            <div class="row-cfg"><span class="k">Langue</span><span class="v">Français (1 alerte doublée en anglais)</span></div>
+                            <div class="row-cfg"><span class="k">Région</span><span class="v">Toutes les régions</span></div>
+                            <div class="row-cfg"><span class="k">Nombre</span><span class="v">Uniquement les meilleurs résultats</span></div>
+                            <div class="row-cfg"><span class="k">Envoyer à</span><span class="v">Flux RSS → importé dans Feedly</span></div>
+                        </div>
+                    </div>
+                    <p class="small mt-2 mb-0"><b>Mes 5 alertes :</b> batterie solide · conduite autonome · voiture connectée faille · software-defined vehicle · recharge ultra-rapide</p>
+                </div>
+            </div>
+
+            <!-- Feedly -->
+            <div class="col-lg-6">
+                <div class="card-neon">
+                    <h5><i class="bi bi-rss-fill me-2"></i>Feedly <span class="tool-tag">Agrégateur RSS</span></h5>
+                    <p class="small text-muted mb-1">Tous mes sites sont regroupés dans un seul fil, classé en dossiers.</p>
+                    <div class="config">
+                        <div class="bar"><i class="bi bi-folder2-open"></i>&nbsp; feedly.com — Mes flux (offre gratuite)</div>
+                        <div class="body">
+                            <div class="folder"><i class="bi bi-folder-fill me-1"></i>AUTO-TECH FR</div>
+                            <div class="ps-3 text-muted">Automobile Propre · Motor1 France · Caradisiac · Clubic Auto · L'argus</div>
+                            <div class="folder mt-2"><i class="bi bi-folder-fill me-1"></i>AUTO-TECH EN</div>
+                            <div class="ps-3 text-muted">Electrek · InsideEVs · TechRadar Vehicle Tech · CnEVPost · Automotive World</div>
+                            <div class="folder mt-2"><i class="bi bi-folder-fill me-1"></i>ALERTES & CYBER</div>
+                            <div class="ps-3 text-muted">5 flux RSS Google Alertes · SecurityWeek · Next</div>
+                        </div>
+                    </div>
+                    <p class="small mt-2 mb-0">Réglages : affichage « Magazine », tri <b>« Les plus récents »</b>, articles lus masqués, « Lire plus tard » pour ce que je traite le vendredi.</p>
+                </div>
+            </div>
+
+            <!-- Syft / Inoreader -->
+            <div class="col-lg-4">
+                <div class="card-neon">
+                    <h5><i class="bi bi-funnel-fill me-2"></i>Inoreader <span class="tool-tag">Filtres RSS</span></h5>
+                    <p class="small text-muted">Utilisé en complément de Feedly pour ses <b>règles de filtrage</b> gratuites.</p>
+                    <div class="config"><div class="body">
+                        <div class="row-cfg"><span class="k">Règle</span><span class="v">SI titre contient « autonome » OU « robotaxi »</span></div>
+                        <div class="row-cfg"><span class="k">Action</span><span class="v">Ajouter le tag #autonome</span></div>
+                        <div class="row-cfg"><span class="k">Exclure</span><span class="v">« promo », « essai vidéo »</span></div>
+                    </div></div>
+                </div>
+            </div>
+
+            <!-- X / LinkedIn -->
+            <div class="col-lg-4">
+                <div class="card-neon">
+                    <h5><i class="bi bi-people-fill me-2"></i>X & LinkedIn <span class="tool-tag">Réseaux sociaux</span></h5>
+                    <p class="small text-muted">Pour avoir l'info « à chaud » directement des acteurs.</p>
+                    <div class="config"><div class="body">
+                        <div class="row-cfg"><span class="k">Liste X</span><span class="v">« Auto-Tech » (privée)</span></div>
+                        <div class="row-cfg"><span class="k">Comptes suivis</span><span class="v">Waymo, BYD, Renault Group, Mercedes-Benz, NVIDIA DRIVE</span></div>
+                        <div class="row-cfg"><span class="k">LinkedIn</span><span class="v">Abonnement pages constructeurs + #vehiculeelectrique</span></div>
+                    </div></div>
+                </div>
+            </div>
+
+            <!-- Raindrop -->
+            <div class="col-lg-4">
+                <div class="card-neon">
+                    <h5><i class="bi bi-bookmark-star-fill me-2"></i>Raindrop.io <span class="tool-tag">Bookmarking</span></h5>
+                    <p class="small text-muted">Stockage des articles retenus (remplace Pocket, fermé en juillet 2025).</p>
+                    <div class="config"><div class="body">
+                        <div class="row-cfg"><span class="k">Collection</span><span class="v">Veille Auto 2025-2026</span></div>
+                        <div class="row-cfg"><span class="k">Tags</span><span class="v">#batterie #autonome #ia #sdv #recharge #cyber #reglementation</span></div>
+                        <div class="row-cfg"><span class="k">Extension</span><span class="v">Navigateur (1 clic = sauvegarde)</span></div>
+                    </div></div>
+                </div>
+            </div>
+
+            <!-- YouTube -->
+            <div class="col-lg-12">
+                <div class="card-neon">
+                    <h5><i class="bi bi-youtube me-2"></i>YouTube & podcasts <span class="tool-tag">Formats vidéo/audio</span></h5>
+                    <p class="small text-muted mb-0">Abonnement aux chaînes officielles des salons (CES, IAA Mobility, Mondial de l'Auto) et des constructeurs pour voir les démonstrations en vidéo. Cloche de notification activée uniquement sur les chaînes des salons pour ne pas être submergé.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparaison outils -->
+        <h4 class="sub mt-5 mb-3 text-center">Comparaison de mes outils</h4>
+        <div class="table-wrap">
+            <table class="neon" style="min-width:760px;">
+                <thead><tr><th>Outil</th><th>Rôle</th><th>Avantages</th><th>Inconvénients</th><th>Ma note</th></tr></thead>
+                <tbody>
+                    <tr><td><b>Google Alertes</b></td><td>Surveillance automatique</td><td class="pro">Gratuit, simple, livraison en RSS possible</td><td class="con">Beaucoup de doublons, pas de filtrage fin</td><td class="stars">★★★★☆</td></tr>
+                    <tr><td><b>Feedly</b></td><td>Centraliser les sources</td><td class="pro">Interface claire, dossiers, appli mobile</td><td class="con">Gratuit limité (100 sources), IA « Leo » payante</td><td class="stars">★★★★★</td></tr>
+                    <tr><td><b>Inoreader</b></td><td>Filtrer / taguer</td><td class="pro">Règles automatiques, recherche dans les flux</td><td class="con">Interface plus chargée</td><td class="stars">★★★☆☆</td></tr>
+                    <tr><td><b>X / LinkedIn</b></td><td>Info en temps réel</td><td class="pro">Annonces officielles en direct</td><td class="con">Bruit, infos non vérifiées, algorithme</td><td class="stars">★★★☆☆</td></tr>
+                    <tr><td><b>Raindrop.io</b></td><td>Archiver</td><td class="pro">Tags, recherche, synchronisé partout</td><td class="con">Fonctions avancées payantes</td><td class="stars">★★★★☆</td></tr>
+                    <tr><td><b>YouTube</b></td><td>Démonstrations</td><td class="pro">Visuel, salons en direct</td><td class="con">Chronophage, beaucoup de contenu commercial</td><td class="stars">★★★☆☆</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="note mt-4">
+            <i class="bi bi-lightbulb me-2" style="color:var(--accent-yellow)"></i><b>Veille sur les outils eux-mêmes :</b> en mai 2025, Mozilla a annoncé la fermeture de <b>Pocket</b> au 8 juillet 2025 (<a href="https://www.macg.co/logiciels/2025/05/mozilla-annonce-la-fermeture-de-pocket-des-le-8-juillet-2025-301573" target="_blank" rel="noopener">MacG</a>). J'ai donc exporté mes sauvegardes et migré vers <b>Raindrop.io</b>. Cela montre qu'il faut aussi surveiller ses propres outils de veille et ne jamais dépendre d'un seul service.
+        </div>
+    </div>
+</section>
+
+<!-- ==================== 4. SOURCES ==================== -->
+<section id="sources" class="section-padding section-alt">
+    <div class="container">
+        <div class="text-center"><h2 class="section-title">4. Mes sources & leur fiabilité</h2></div>
+        <p class="text-center text-muted mb-4">Je classe mes sources selon leur type et je leur donne une note de fiabilité (★ à ★★★★★) selon : auteur identifié, citations des sources officielles, historique d'erreurs, indépendance.</p>
+        <div class="table-wrap">
+            <table class="neon" style="min-width:760px;">
+                <thead><tr><th>Source</th><th>Type</th><th>Langue</th><th>Pourquoi je la suis</th><th>Fiabilité</th></tr></thead>
+                <tbody>
+                    <tr><td><a href="https://www.automobile-propre.com" target="_blank" rel="noopener">Automobile Propre</a></td><td>Média spécialisé</td><td>FR</td><td>Référence française sur l'électrique et la recharge</td><td class="stars">★★★★☆</td></tr>
+                    <tr><td><a href="https://electrek.co" target="_blank" rel="noopener">Electrek</a></td><td>Média spécialisé</td><td>EN</td><td>Très rapide sur Tesla, Waymo, batteries</td><td class="stars">★★★★☆</td></tr>
+                    <tr><td><a href="https://cnevpost.com" target="_blank" rel="noopener">CnEVPost</a></td><td>Média spécialisé</td><td>EN</td><td>Actualité des constructeurs chinois (BYD, CATL)</td><td class="stars">★★★★☆</td></tr>
+                    <tr><td><a href="https://fr.motor1.com" target="_blank" rel="noopener">Motor1 France</a></td><td>Média auto généraliste</td><td>FR</td><td>Nouveautés modèles et salons</td><td class="stars">★★★☆☆</td></tr>
+                    <tr><td><a href="https://www.caradisiac.com" target="_blank" rel="noopener">Caradisiac</a></td><td>Média auto généraliste</td><td>FR</td><td>Actualité française (expérimentations, réglementation)</td><td class="stars">★★★☆☆</td></tr>
+                    <tr><td><a href="https://www.techradar.com/vehicle-tech" target="_blank" rel="noopener">TechRadar</a></td><td>Média tech</td><td>EN</td><td>Angle « technologie » grand public</td><td class="stars">★★★☆☆</td></tr>
+                    <tr><td><a href="https://next.ink" target="_blank" rel="noopener">Next</a></td><td>Média tech indépendant</td><td>FR</td><td>Analyses techniques IA et puces</td><td class="stars">★★★★★</td></tr>
+                    <tr><td><a href="https://www.securityweek.com" target="_blank" rel="noopener">SecurityWeek</a></td><td>Média cybersécurité</td><td>EN</td><td>Failles des véhicules connectés</td><td class="stars">★★★★★</td></tr>
+                    <tr><td><a href="https://fr.euronews.com" target="_blank" rel="noopener">Euronews</a></td><td>Média d'information</td><td>FR</td><td>Décisions politiques européennes</td><td class="stars">★★★★☆</td></tr>
+                    <tr><td><a href="https://www.tesla-mag.com" target="_blank" rel="noopener">Tesla Mag</a></td><td>Blog de passionnés</td><td>FR</td><td>Suivi détaillé du FSD — <i>à recouper, ton souvent enthousiaste</i></td><td class="stars">★★☆☆☆</td></tr>
+                    <tr><td>Sites officiels (Renault, Mercedes, Waymo…)</td><td>Source primaire</td><td>FR/EN</td><td>Annonces officielles — <i>mais discours commercial</i></td><td class="stars">★★★☆☆</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== 5. TABLEAU DE VEILLE ==================== -->
+<section id="tableau" class="section-padding">
+    <div class="container">
+        <div class="text-center"><h2 class="section-title">5. Tableau de veille</h2></div>
+        <p class="text-center text-muted mb-4">Toutes les informations retenues, avec la date, la source, le lien, l'outil qui me l'a apportée, les mots-clés, un résumé, l'importance et la catégorie. <br>Cliquez sur une catégorie pour filtrer, ou sur « Date » pour trier.</p>
+
+        <!-- Régularité -->
+        <div class="card-neon mb-4">
+            <h4 class="sub mb-1"><i class="bi bi-bar-chart-fill me-2"></i>Régularité de la veille</h4>
+            <p class="small text-muted mb-0">Nombre d'informations retenues par mois (calculé automatiquement à partir du tableau).</p>
+            <div class="months" id="months"></div>
+        </div>
+
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3">
+            <div class="filters" id="filters"></div>
+            <input type="search" class="search" id="search" placeholder="Rechercher (ex : Waymo, batterie…)">
+        </div>
+        <div class="table-wrap">
+            <table class="neon" id="veilleTable">
+                <thead>
+                    <tr>
+                        <th class="sortable" id="sortDate">Date ⇅</th>
+                        <th>Titre de l'information</th>
+                        <th>Source / lien</th>
+                        <th>Outil</th>
+                        <th>Mots-clés</th>
+                        <th style="min-width:280px;">Résumé</th>
+                        <th>Importance</th>
+                        <th>Catégorie</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody"></tbody>
+            </table>
+        </div>
+        <p class="small text-muted mt-2"><span id="count"></span> · Légende importance : ★ faible · ★★ moyenne · ★★★ forte (impact direct sur la filière ou le métier IT)</p>
+    </div>
+</section>
+
+<!-- ==================== 6. SYNTHÈSE ==================== -->
+<section id="synthese" class="section-padding section-alt">
+    <div class="container">
+        <div class="text-center"><h2 class="section-title">6. Synthèse & tendances</h2></div>
+        <p class="text-center text-muted mb-5">Ce que j'ai compris en croisant les informations, avec l'état de chaque technologie et mon analyse personnelle.</p>
+
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="trend">
+                    <h5>Batteries : le solide arrive, le sodium est déjà là <span class="state st-proto">Prototypes → 2027-2028</span></h5>
+                    <p class="small mb-1">Mercedes a roulé <b>1 205 km sans recharge</b> avec une batterie solide (sept. 2025). Toyota, BMW et Nissan visent 2027-2028. En parallèle, CATL et Changan lancent en 2026 la <b>première voiture de série au sodium-ion</b> (175 Wh/kg, ≈ 400 km, fonctionne à −30 °C).</p>
+                    <div class="avis"><b>Mon avis :</b> les annonces « batterie solide en 2026 » de 2024 étaient trop optimistes : en 2026 on reste sur des petites séries. Le sodium-ion est plus discret mais plus concret : moins cher, sans lithium, idéal pour les petites voitures.</div>
+                </div>
+                <div class="trend" style="border-color:var(--secondary-neon)">
+                    <h5>Conduite autonome : les robotaxis deviennent un vrai service <span class="state st-deploy">Déploiement</span></h5>
+                    <p class="small mb-1">Waymo couvre plus de <b>1 400 miles² dans 11 villes</b> avec ≈ 3 000 véhicules (mai 2026) et prépare Londres. Tesla a obtenu l'homologation européenne de son FSD supervisé aux Pays-Bas (avril 2026) et la France a autorisé des essais en septembre 2026. Sur l'A10, une navette autonome a dépassé 40 000 km avec passagers.</p>
+                    <div class="avis"><b>Mon avis :</b> les États-Unis et la Chine ont plusieurs années d'avance. En Europe on reste surtout en <b>niveau 2</b> (le conducteur reste responsable) : il faut bien distinguer « aide à la conduite » et « voiture autonome » dans les articles, souvent confondus.</div>
+                </div>
+                <div class="trend" style="border-color:var(--accent-pink)">
+                    <h5>Cybersécurité : la voiture est une cible <span class="state st-prod">Obligation légale</span></h5>
+                    <p class="small mb-1">La faille Subaru Starlink (janv. 2025) permettait de <b>localiser, déverrouiller et démarrer</b> des voitures à distance via un simple portail d'administration mal protégé. Depuis juillet 2024, le règlement <b>ONU R155</b> impose un système de management de la cybersécurité pour tout véhicule neuf vendu en Europe.</p>
+                    <div class="avis"><b>Mon avis :</b> c'est l'axe le plus lié à mon option SISR. La faille Subaru ne venait pas de la voiture mais d'un <b>serveur web</b> : authentification faible, 2FA contournable. Ce sont exactement les notions vues en Bloc 3.</div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="trend" style="border-color:var(--accent-green)">
+                    <h5>Le logiciel prend le pouvoir (SDV) <span class="state st-deploy">Déploiement</span></h5>
+                    <p class="small mb-1">Volkswagen s'appuie sur Rivian pour une <b>architecture zonale</b> : quelques calculateurs puissants remplacent des dizaines de boîtiers, et la voiture évolue par mises à jour OTA (ID.Every1 à ≈ 20 000 € en 2027). La BMW iX3 Neue Klasse embarque 4 « super-cerveaux ».</p>
+                    <div class="avis"><b>Mon avis :</b> une voiture devient un réseau informatique : bus de données, passerelles, serveurs de mises à jour. Les constructeurs recrutent désormais des profils réseau et système, plus seulement des mécaniciens.</div>
+                </div>
+                <div class="trend" style="border-color:var(--accent-yellow)">
+                    <h5>Recharge : vers les 5 minutes et la voiture-batterie <span class="state st-deploy">Déploiement</span></h5>
+                    <p class="small mb-1">BYD annonce <b>2 000 bornes « Flash Charging »</b> jusqu'à 1 000 kW en Europe d'ici fin 2026 (10 → 70 % en 5 min). En France, la Renault 5 est la première voiture à proposer une offre commerciale de <b>recharge bidirectionnelle (V2G)</b>.</p>
+                    <div class="avis"><b>Mon avis :</b> la vraie limite n'est plus la voiture mais le <b>réseau électrique</b> et la gestion intelligente (logiciel de pilotage des bornes, compteurs communicants).</div>
+                </div>
+                <div class="trend" style="border-color:#ffae4d">
+                    <h5>IA embarquée & réglementation <span class="state st-prod">En série</span></h5>
+                    <p class="small mb-1">Au CES 2026, l'IA a éclipsé les nouveaux modèles. La Mercedes CLA utilise un assistant basé sur <b>Google Gemini</b> ; NVIDIA présente <b>Alpamayo</b>, un modèle d'IA qui « raisonne » pour conduire. Côté politique, la Commission européenne propose (déc. 2025) de passer de 100 % à <b>90 % de réduction de CO₂ en 2035</b>.</p>
+                    <div class="avis"><b>Mon avis :</b> l'IA générative arrive plus vite dans l'habitacle que la conduite autonome. La proposition européenne crée de l'incertitude pour les constructeurs qui avaient tout misé sur l'électrique.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analyse critique -->
+        <div class="card-neon mt-3">
+            <h4 class="sub mb-3"><i class="bi bi-search me-2"></i>Analyse critique de mes sources</h4>
+            <div class="row g-3 small">
+                <div class="col-md-4"><b style="color:var(--accent-green)">Ce que j'ai appris</b><ul class="clean text-muted mt-1"><li>Toujours <b>recouper</b> une annonce avec une 2ᵉ source (ex : BYD vérifié sur TechRadar + InsideEVs).</li><li>Vérifier la date : beaucoup d'articles de 2024 annonçaient des choses « pour 2026 » qui ne se sont pas faites.</li></ul></div>
+                <div class="col-md-4"><b style="color:var(--accent-yellow)">Pièges rencontrés</b><ul class="clean text-muted mt-1"><li>Les communiqués des constructeurs sont du marketing : chiffres « jusqu'à », en conditions idéales.</li><li>Les blogs de fans (Tesla) sont rapides mais peu neutres.</li></ul></div>
+                <div class="col-md-4"><b style="color:var(--primary-cyan)">Mes règles</b><ul class="clean text-muted mt-1"><li>Info « chaude » d'un réseau social = non retenue tant qu'un média ne l'a pas confirmée.</li><li>Je privilégie la source primaire (régulateur, constructeur) pour les chiffres.</li></ul></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== 7. CONCLUSION ==================== -->
+<section id="conclusion" class="section-padding">
+    <div class="container">
+        <div class="text-center"><h2 class="section-title">7. Conclusion</h2></div>
+        <div class="row g-4">
+            <div class="col-lg-7">
+                <div class="card-neon">
+                    <h4 class="sub mb-3">Réponse à la problématique</h4>
+                    <p>La voiture est passée d'un objet mécanique à un <b>système informatique connecté</b>. Les innovations majeures de 2025-2026 sont logicielles : IA, conduite automatisée, architecture zonale, mises à jour à distance et pilotage intelligent de la recharge. Même les batteries, sujet plus « chimique », dépendent de logiciels de gestion (BMS).</p>
+                    <p class="mb-0">Cette évolution crée de nouveaux besoins pour les métiers de l'informatique : <b>sécuriser</b> les véhicules et les serveurs des constructeurs (R155), <b>administrer</b> des flottes connectées, <b>gérer</b> les réseaux et les données de millions de véhicules.</p>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="card-neon">
+                    <h4 class="sub mb-3">Lien avec le BTS SIO SISR</h4>
+                    <ul class="clean">
+                        <li><b>Bloc 1</b> – veille, gestion du patrimoine informatique (flottes connectées)</li>
+                        <li><b>Bloc 2</b> – réseaux, serveurs, mises à jour à distance, supervision</li>
+                        <li><b>Bloc 3</b> – cybersécurité : authentification, 2FA, failles web (cas Subaru)</li>
+                    </ul>
+                    <h4 class="sub mt-4 mb-2">Prochaines étapes</h4>
+                    <ul class="clean text-muted">
+                        <li>Suivre le <b>Mondial de l'Auto</b> (Paris, 12-18 oct. 2026)</li>
+                        <li>Surveiller l'adoption du texte européen sur 2035</li>
+                        <li>Automatiser la collecte (IFTTT / script Python RSS)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-5">
+            <a href="./#veille" class="btn-neon"><i class="bi bi-arrow-left me-2"></i>Retour au portfolio</a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        Veille technologique réalisée par <b style="color:var(--primary-cyan)">Abid HAROON</b> – BTS SIO option SISR · Dernière mise à jour : <span id="lastUpdate"></span>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // ===== Données du tableau de veille =====
+    // cat : batt | auto | ia | sdv | rech | cyber | regl     imp : 1 à 3
+    const veille = [
+        { d:"2025-01-13", t:"La Mercedes CLA intègre un assistant vocal basé sur Google Gemini", s:"Carscoops", u:"https://www.carscoops.com/2025/01/mercedes-cla-getting-ai-smarts-from-google/", o:"Feedly", k:"IA, assistant vocal, MB.OS", r:"Le nouvel assistant de la CLA (système MB.OS) repose sur l'agent IA automobile de Google Cloud : conversation naturelle, mémoire du dialogue, accès aux données Google Maps.", i:2, c:"ia" },
+        { d:"2025-01-24", t:"Faille Subaru Starlink : des voitures pilotables à distance", s:"SecurityWeek", u:"https://www.securityweek.com/subaru-starlink-vulnerability-exposed-cars-to-remote-hacking/", o:"Google Alertes", k:"cybersécurité, faille, voiture connectée", r:"Des chercheurs ont pris le contrôle d'un portail d'administration Subaru (réinitialisation de mot de passe et 2FA contournables) : localisation, déverrouillage et démarrage à distance. Corrigé en 24 h.", i:3, c:"cyber" },
+        { d:"2025-03-19", t:"VW ID.Every1 : l'architecture zonale Rivian dans une voiture à 20 000 €", s:"Green Car Reports", u:"https://www.greencarreports.com/news/1146016_vw-cheapest-ev-leading-edge-zonal-rivian", o:"Feedly", k:"SDV, architecture zonale, OTA", r:"La future petite VW (2027) utilisera l'architecture électronique zonale développée avec Rivian : peu de calculateurs, mises à jour à distance pendant toute la vie du véhicule.", i:3, c:"sdv" },
+        { d:"2025-05-22", t:"Mozilla annonce la fermeture de Pocket (outil de veille)", s:"MacG", u:"https://www.macg.co/logiciels/2025/05/mozilla-annonce-la-fermeture-de-pocket-des-le-8-juillet-2025-301573", o:"Feedly", k:"outil de veille, Pocket", r:"Veille sur mes outils : Pocket ferme le 8 juillet 2025. J'ai exporté mes articles et migré vers Raindrop.io.", i:1, c:"outils" },
+        { d:"2025-06-06", t:"BYD prépare un réseau de recharge mégawatt en Europe", s:"electrive.net", u:"https://www.electrive.net/2025/06/06/400-km-reichweite-in-5-minuten-byd-baut-megawatt-ladenetz-in-europa/", o:"Google Alertes", k:"recharge ultra-rapide, mégawatt, BYD", r:"BYD annonce l'arrivée en Europe de sa recharge « Flash » de 1 MW, promettant environ 400 km récupérés en 5 minutes.", i:2, c:"rech" },
+        { d:"2025-09-05", t:"BMW iX3 Neue Klasse : 800 km d'autonomie et 4 super-calculateurs", s:"CARS24", u:"https://www.cars24.com.au/car-news/bmw-unveils-neue-klasse-ix3-at-iaa-mobility-2025/", o:"YouTube (IAA)", k:"IAA Munich, 800 V, calculateurs", r:"Dévoilée au salon IAA de Munich : architecture 800 V, recharge 400 kW (370 km en 10 min), 4 ordinateurs centraux dont un qui gère moteurs, freins et direction.", i:2, c:"sdv" },
+        { d:"2025-09-10", t:"Une Mercedes EQS à batterie solide parcourt 1 205 km sans recharge", s:"TimesLIVE", u:"https://www.timeslive.co.za/motoring/news/2025-09-10-mercedes-eqs-with-solid-state-battery-covers-1205km-on-a-single-charge/", o:"Google Alertes", k:"batterie solide, autonomie", r:"Prototype EQS Stuttgart → Malmö en une charge, avec encore 137 km restants. Mercedes vise la série « d'ici la fin de la décennie ».", i:3, c:"batt" },
+        { d:"2025-10-15", t:"Waymo lancera ses robotaxis à Londres en 2026", s:"Automotive World", u:"https://www.automotiveworld.com/news/waymo-expands-into-europe-with-2026-london-robotaxi-debut/", o:"X (liste Auto-Tech)", k:"robotaxi, Waymo, Europe", r:"Première expansion européenne de Waymo : tests avec chauffeurs de sécurité puis service commercial en 2026, avec le gestionnaire de flotte Moove.", i:2, c:"auto" },
+        { d:"2025-12-17", t:"L'UE propose d'assouplir la fin du thermique en 2035 (−90 % de CO₂)", s:"Paris Match Belgique", u:"https://www.parismatch.be/lifestyle/voitures-et-mobilite/2025/12/17/un-mauvais-signal-leurope-renonce-a-interdire-les-moteurs-thermiques-dici-2035-6K6IAAEMCVEYFJLT5IQSWDDC4U/", o:"Google Alertes", k:"réglementation, 2035, CO2", r:"La Commission propose 90 % de réduction au lieu de 100 % ; les 10 % restants compensés par acier bas carbone, e-carburants ou biocarburants. Proposition encore à adopter.", i:3, c:"regl" },
+        { d:"2026-01-07", t:"CES 2026 : l'IA et la conduite autonome éclipsent les voitures électriques", s:"Automobile Propre", u:"https://www.automobile-propre.com/articles/ces-2026-de-lia-et-des-technologies-de-conduite-autonome-mais-peu-de-nouvelles-voitures-electriques/", o:"Feedly", k:"CES, IA, fonctions à la demande", r:"Peu de nouveaux modèles, beaucoup d'IA. Mercedes s'associe à NVIDIA, Dolby et Xperi. Les constructeurs développent des fonctions payantes « à la demande ».", i:2, c:"ia" },
+        { d:"2026-01-08", t:"NVIDIA dévoile Alpamayo, une IA qui « raisonne » pour conduire", s:"Next", u:"https://next.ink/217881/alpamayo-les-grandes-ambitions-de-nvidia-dans-la-conduite-autonome/", o:"Feedly", k:"IA, NVIDIA, niveau 4", r:"Modèle vision-langage-action de 10 milliards de paramètres + simulateur, proposé en open source aux constructeurs (Mercedes, Toyota, Volvo…).", i:3, c:"ia" },
+        { d:"2026-02-05", t:"CATL : la première voiture de série à batterie sodium-ion", s:"CnEVPost", u:"https://cnevpost.com/2026/02/05/catl-sodium-batteries-begin-deployment-in-production-passenger-vehicles/", o:"Inoreader", k:"sodium-ion, CATL, Changan", r:"Batterie Naxtra de 175 Wh/kg pour les marques de Changan, ≈ 400 km avec 45 kWh. Plus de 90 % de capacité conservée à −40 °C.", i:3, c:"batt" },
+        { d:"2026-03-02", t:"La conduite autonome devient rentable : Chine et USA prennent le large", s:"Motorsactu", u:"https://motorsactu.com/la-conduite-autonome-devient-rentable-en-2026-la-chine-et-les-etats-unis-prennent-le-large/", o:"Google Alertes", k:"marché, autonomie, Chine", r:"Le marché des logiciels de conduite assistée progresse de plus de 90 % en un an. L'Europe est absente des puces, des logiciels et des données.", i:2, c:"auto" },
+        { d:"2026-03-15", t:"BYD Denza Z9 GT : 10 → 70 % en 5 minutes, arrivée en Europe", s:"TechRadar", u:"https://www.techradar.com/vehicle-tech/hybrid-electric-vehicles/ready-in-5-full-in-9-this-chinese-ev-charges-to-70-percent-in-only-5-minutes-has-a-644-mile-range-and-its-coming-to-europe-in-april", o:"Feedly", k:"recharge flash, BYD, Europe", r:"BYD vise 2 000 bornes Flash Charging en Europe d'ici fin 2026 (Royaume-Uni, Allemagne, Italie, France, Espagne). Recharge 10-97 % en 9 min.", i:3, c:"rech" },
+        { d:"2026-04-12", t:"Le FSD supervisé de Tesla homologué aux Pays-Bas", s:"Tesla Mag", u:"https://www.tesla-mag.com/le-fsd-tesla-vient-detre-homologue-aux-pays-bas-voici-exactement-ce-qui-se-passe-maintenant-et-ce-que-ca-change-pour-vous-en-france/", o:"X (liste Auto-Tech)", k:"Tesla, FSD, homologation, RDW", r:"Le RDW néerlandais accorde la 1ʳᵉ homologation européenne du FSD (niveau 2 : le conducteur reste responsable et surveillé par caméra).", i:3, c:"auto" },
+        { d:"2026-05-13", t:"Waymo étend son service à 1 400 miles² dans 11 villes", s:"Electrek", u:"https://electrek.co/2026/05/13/waymo-expands-coverage-1400-square-miles-11-cities/", o:"Feedly", k:"Waymo, robotaxi, expansion", r:"+27 % de zone couverte, ≈ 3 000 robotaxis, plus de 20 millions de trajets. Objectif : 1 million de trajets par semaine fin 2026.", i:2, c:"auto" },
+        { d:"2026-08-27", t:"Mondial de l'Auto 2026 : dates et nouveautés attendues", s:"Automobile Propre", u:"https://www.automobile-propre.com/articles/mondial-de-lauto-2026-dates-nouveautes-tarifs-ce-quil-faut-savoir-sur-le-salon-de-paris/", o:"Feedly", k:"salon, Paris, constructeurs chinois", r:"Salon du 12 au 18 octobre 2026 à Paris Expo Porte de Versailles, avec de nombreux constructeurs chinois. Événement à suivre pour ma veille.", i:1, c:"ia" },
+        { d:"2026-09-03", t:"La France autorise des essais du FSD de Tesla", s:"Euronews", u:"https://fr.euronews.com/2026/09/03/la-france-teste-la-conduite-autonome-de-tesla-deux-mois-apres-lavoir-jugee-trop-risquee", o:"Google Alertes", k:"FSD, France, réglementation", r:"Deux mois après un refus, le ministère des Transports autorise des essais sur route avec 2 véhicules. 5 pays européens ont déjà autorisé le FSD supervisé.", i:3, c:"regl" },
+        { d:"2026-09-09", t:"Batteries solides : où en est-on en 2026 ?", s:"Fiches-Auto", u:"https://www.fiches-auto.fr/articles-auto/batterie-et-recharge-ve/s-3968-batteries-solides-ou-en-est-on-en-2026-.php", o:"Google Alertes", k:"batterie solide, ProLogium, état des lieux", r:"Bilan : petites cellules en production (Maxell, ProLogium), mais format automobile encore naissant. BMW vise 2027, Toyota 2027-2028, Nissan 2028.", i:2, c:"batt" },
+        { d:"2026-09-24", t:"A10 : la navette autonome dépasse 40 000 km avec passagers", s:"Caradisiac", u:"https://www.caradisiac.com/premiere-mondiale-sur-l-a10-la-navette-autonome-passe-le-cap-des-40-000-km-avec-ses-premiers-passagers-224230.htm", o:"Feedly", k:"navette autonome, V2X, autoroute", r:"Navettes Milla entre Longvilliers et Massy, communiquant avec l'infrastructure connectée de Vinci Autoroutes. 87 % d'usagers satisfaits.", i:2, c:"auto" }
+    ];
+    // Références de fond (réglementation, V2G) – hors période mais utiles
+    veille.push(
+        { d:"2024-07-07", t:"ONU R155 / R156 : cybersécurité obligatoire pour tous les véhicules neufs", s:"DQS", u:"https://www.dqsglobal.com/fr/explorer/blog/la-cybersecurite-automobile-nouvelles-reglementations-obligatoires", o:"Recherche Google", k:"R155, R156, ISO 21434", r:"Référence de fond : depuis juillet 2024, tout véhicule neuf vendu dans l'UE doit être couvert par un système de management de la cybersécurité et des mises à jour.", i:3, c:"cyber", ref:true },
+        { d:"2024-10-23", t:"La France, 1er pays avec une offre V2G commerciale (Renault 5)", s:"NewMobility News", u:"https://newmobility.news/2024/10/23/france-first-to-launch-commercial-v2g-with-electric-renault-5/", o:"Recherche Google", k:"V2G, recharge bidirectionnelle, Renault", r:"Référence de fond : Mobilize et The Mobility House proposent de revendre l'électricité de la batterie de la R5 au réseau (250 à 400 €/an estimés).", i:2, c:"rech", ref:true }
+    );
+
+    const cats = {
+        all:  { label:"Toutes", cls:"" },
+        batt: { label:"Batteries", cls:"cat-batt" },
+        auto: { label:"Conduite autonome", cls:"cat-auto" },
+        ia:   { label:"IA & salons", cls:"cat-ia" },
+        sdv:  { label:"Logiciel / SDV", cls:"cat-sdv" },
+        rech: { label:"Recharge", cls:"cat-rech" },
+        cyber:{ label:"Cybersécurité", cls:"cat-cyber" },
+        regl: { label:"Réglementation", cls:"cat-regl" },
+        outils:{ label:"Outils de veille", cls:"cat-sdv" }
+    };
+    const moisFR = ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc."];
+    const fmt = d => { const [y,m,j] = d.split("-"); return `${j}/${m}/${y}`; };
+    const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+    let current = "all", asc = false, query = "";
+
+    function render() {
+        const rows = veille
+            .filter(v => current === "all" || v.c === current)
+            .filter(v => !query || (v.t + v.s + v.k + v.r + v.o).toLowerCase().includes(query))
+            .sort((a,b) => asc ? a.d.localeCompare(b.d) : b.d.localeCompare(a.d));
+        document.getElementById("tbody").innerHTML = rows.map(v => `
+            <tr>
+                <td class="date">${fmt(v.d)}${v.ref ? '<br><span class="kw">(référence)</span>' : ''}</td>
+                <td><b>${esc(v.t)}</b></td>
+                <td><a href="${v.u}" target="_blank" rel="noopener">${esc(v.s)} <i class="bi bi-box-arrow-up-right"></i></a></td>
+                <td><span class="tool-tag">${esc(v.o)}</span></td>
+                <td class="kw">${esc(v.k)}</td>
+                <td>${esc(v.r)}</td>
+                <td class="imp">${"★".repeat(v.i)}${'<span style="opacity:.25">' + "★".repeat(3 - v.i) + '</span>'}</td>
+                <td><span class="cat ${cats[v.c].cls}">${cats[v.c].label}</span></td>
+            </tr>`).join("");
+        document.getElementById("count").textContent = `${rows.length} information(s) affichée(s) sur ${veille.length}`;
+    }
+
+    // Filtres
+    const f = document.getElementById("filters");
+    f.innerHTML = Object.entries(cats).map(([k,v]) => `<button class="filter-btn ${k==='all'?'active':''}" data-c="${k}">${v.label}</button>`).join("");
+    f.addEventListener("click", e => {
+        const b = e.target.closest(".filter-btn"); if (!b) return;
+        f.querySelectorAll(".filter-btn").forEach(x => x.classList.remove("active"));
+        b.classList.add("active"); current = b.dataset.c; render();
+    });
+    document.getElementById("search").addEventListener("input", e => { query = e.target.value.toLowerCase().trim(); render(); });
+    document.getElementById("sortDate").addEventListener("click", () => { asc = !asc; render(); });
+
+    // Graphique de régularité (janv. 2025 → mois le plus récent)
+    (function months() {
+        const inPeriod = veille.filter(v => !v.ref);
+        const last = inPeriod.map(v => v.d).sort().pop();
+        let y = 2025, m = 1; const [ly, lm] = last.split("-").map(Number);
+        const list = [];
+        while (y < ly || (y === ly && m <= lm)) { list.push([y, m]); m++; if (m > 12) { m = 1; y++; } }
+        const counts = list.map(([yy, mm]) => inPeriod.filter(v => v.d.startsWith(`${yy}-${String(mm).padStart(2,"0")}`)).length);
+        const max = Math.max(...counts, 1);
+        document.getElementById("months").innerHTML = list.map(([yy, mm], i) => `
+            <div class="month" title="${moisFR[mm-1]} ${yy} : ${counts[i]} info(s)">
+                <div class="c">${counts[i] || ""}</div>
+                <div class="b" style="height:${(counts[i] / max) * 120}px;${counts[i] ? "" : "opacity:.25"}"></div>
+                <div class="m">${moisFR[mm-1]}${mm === 1 || i === 0 ? " " + String(yy).slice(2) : ""}</div>
+            </div>`).join("");
+        document.getElementById("stArticles").textContent = veille.length;
+        document.getElementById("stSources").textContent = new Set(veille.map(v => v.s)).size;
+        document.getElementById("lastUpdate").textContent = fmt(last);
+    })();
+
+    render();
+</script>
+</body>
+</html>
