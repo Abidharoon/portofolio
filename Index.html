@@ -78,12 +78,12 @@
             text-shadow: 0 0 8px var(--primary-cyan);
         }
 
-        /* Menu sur une ligne (ajout Veille technologique) */
+        /* Menu sur une ligne (ajout Veille technologique + Bilan) */
         @media (min-width: 992px) {
             .navbar .nav-link { white-space: nowrap; }
         }
         @media (min-width: 992px) and (max-width: 1399px) {
-            .navbar .nav-link { margin: 0 3px; font-size: 0.82rem; }
+            .navbar .nav-link { margin: 0 2px; font-size: 0.78rem; }
         }
 
         .navbar .nav-link:hover::after {
@@ -510,6 +510,7 @@
                     <li class="nav-item"><a class="nav-link" href="#experience">Expérience</a></li>
                     <li class="nav-item"><a class="nav-link" href="#compte-rendu">1ère année</a></li>
                     <li class="nav-item"><a class="nav-link" href="#annee2">2ème Année</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#bilan">BILAN</a></li>
                     <li class="nav-item"><a class="nav-link" href="#veille">Veille technologique</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
@@ -781,7 +782,7 @@
         <a href="TP 01.pdf" download class="btn-sm-custom btn-sm-custom-outline" style="padding:2px 14px;font-size:0.7rem;">Download</a>
     </div>
 </div>
-    
+
 <div class="course-item">
     <span>
         <i class="bi bi-file-earmark-pdf me-2" style="color:var(--primary-cyan);"></i>
@@ -792,7 +793,7 @@
         <a href="TP 02 Création des switchs.pdf" download class="btn-sm-custom btn-sm-custom-outline" style="padding:2px 14px;font-size:0.7rem;">Download</a>
     </div>
 </div>
-        
+
             <div class="course-item">
     <span>
         <i class="bi bi-file-earmark-pdf me-2" style="color:var(--primary-cyan);"></i>
@@ -803,8 +804,8 @@
         <a href="B1_TP02_GLPI.pdf" download class="btn-sm-custom btn-sm-custom-outline" style="padding:2px 14px;font-size:0.7rem;">Download</a>
     </div>
 </div>
-        
-        
+
+
             <div class="course-item">
     <span>
         <i class="bi bi-file-earmark-pdf me-2" style="color:var(--primary-cyan);"></i>
@@ -815,7 +816,7 @@
         <a href="SAMBA.pdf" download class="btn-sm-custom btn-sm-custom-outline" style="padding:2px 14px;font-size:0.7rem;">Download</a>
     </div>
 </div>
-        
+
             <div class="course-item">
     <span>
         <i class="bi bi-file-earmark-pdf me-2" style="color:var(--primary-cyan);"></i>
@@ -826,7 +827,7 @@
         <a href="GLPI.pdf" download class="btn-sm-custom btn-sm-custom-outline" style="padding:2px 14px;font-size:0.7rem;">Download</a>
     </div>
 </div>
-        
+
             <div class="course-item">
     <span>
         <i class="bi bi-file-earmark-pdf me-2" style="color:var(--primary-cyan);"></i>
@@ -972,8 +973,34 @@
         </div>
     </section>
 
+    <!-- ==================== BILAN ==================== -->
+    <section id="bilan" class="section-padding">
+        <div class="container">
+            <div class="text-center"><h2 class="section-title">BILAN</h2></div>
+            <p class="text-center text-muted mb-5">Bilan de mes TP</p>
+
+            <div class="course-zone">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <i class="bi bi-clipboard-check" style="font-size:2rem;color:var(--secondary-neon);"></i>
+                    <h4 style="margin:0;">Mes bilans</h4>
+                </div>
+
+                <div class="course-item">
+                    <span>
+                        <i class="bi bi-file-earmark-pdf me-2" style="color:var(--primary-cyan);"></i>
+                        Bilan TP 1
+                    </span>
+                    <div>
+                        <span class="badge-neon">Disponible</span>
+                        <a href="Bilan_TP1.pdf" target="_blank" class="btn-sm-custom btn-sm-custom-outline" style="padding:2px 14px;font-size:0.7rem;">Voir PDF</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ==================== VEILLE TECHNOLOGIQUE ==================== -->
-    <section id="veille" class="section-padding">
+    <section id="veille" class="section-padding" style="background:var(--bg-dark);">
         <style>#veille .text-muted{color:var(--text-muted)!important;}</style>
         <div class="container">
             <div class="text-center"><h2 class="section-title">Veille technologique</h2></div>
@@ -1017,7 +1044,7 @@
     </section>
 
     <!-- ==================== CONTACT ==================== -->
-    <section id="contact" class="section-padding" style="background:var(--bg-dark);">
+    <section id="contact" class="section-padding">
         <div class="container">
             <h2 class="text-center section-title">Contactez-moi</h2>
             <div class="row g-4">
