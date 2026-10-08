@@ -438,6 +438,60 @@
         .cr-actions .btn-sm-custom { padding: 4px 16px; font-size: 0.8rem; }
         .cr-vide { color: var(--text-muted); padding: 20px; text-align: center; border: 1px dashed rgba(0, 212, 255, 0.2); border-radius: 12px; }
 
+
+        /* ---- Monogramme (remplace la photo) ---- */
+        .hero-monogram {
+            width: 120px; height: 120px; margin: 10px auto 34px;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Orbitron', sans-serif; font-size: 2.6rem; font-weight: 700; color: var(--primary-cyan);
+            border: 2px solid var(--primary-cyan); border-radius: 24px; transform: rotate(45deg);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.35), inset 0 0 25px rgba(123, 47, 252, 0.25);
+            background: rgba(11, 14, 26, 0.6);
+        }
+        .hero-monogram { text-shadow: 0 0 15px rgba(0, 212, 255, 0.7); }
+        .hero-monogram > span { display: block; transform: rotate(-45deg); }
+        .hero-tag {
+            display: inline-block; margin-bottom: 18px; padding: 6px 16px; border-radius: 30px;
+            font-size: 0.85rem; letter-spacing: 1px; color: var(--text-light);
+            border: 1px solid rgba(123, 47, 252, 0.5); background: rgba(123, 47, 252, 0.12);
+        }
+
+        /* ---- Curseur fluide (WebGL) + point + étiquette ---- */
+        .cursor { display: none; }
+        html.has-cursor, html.has-cursor a, html.has-cursor button, html.has-cursor .prof-card { cursor: none; }
+        html.has-cursor .cursor { display: block; position: fixed; top: 0; left: 0; z-index: 9998; pointer-events: none; }
+        .fluid-canvas { position: fixed; inset: 0; width: 100%; height: 100%; }
+        .cursor-dot {
+            position: fixed; top: 0; left: 0; width: 10px; height: 10px; margin: -5px 0 0 -5px;
+            background: var(--primary-cyan); border-radius: 50%;
+            box-shadow: 0 0 0 1.5px #0b0e1a, 0 0 0 3px #e0e8f0, 0 0 14px var(--primary-cyan);
+            transition: width .2s ease, height .2s ease, margin .2s ease;
+        }
+        html.cursor-hover .cursor-dot { width: 14px; height: 14px; margin: -7px 0 0 -7px; }
+        .cursor-label {
+            position: fixed; top: 0; left: 0; background: var(--primary-cyan); color: #0b0e1a;
+            padding: 5px 10px; font-family: 'Roboto Mono', monospace; font-size: .62rem; font-weight: 600;
+            letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; opacity: 0; transition: opacity .2s;
+        }
+        html.cursor-hover .cursor-label { opacity: 1; }
+
+        /* ---- Préchargeur : compteur 00 -> 100 ---- */
+        .preloader { position: fixed; inset: 0; z-index: 10000; color: var(--text-light); pointer-events: none; }
+        .preloader-panel { position: absolute; left: 0; right: 0; background: #05080f; transition: transform .9s cubic-bezier(.77,0,.18,1); }
+        .preloader-panel--top { top: 0; height: 52%;
+            clip-path: polygon(0 0,100% 0,100% 100%,91% 90%,82% 100%,73% 88%,64% 100%,55% 86%,46% 100%,37% 89%,28% 100%,19% 87%,10% 100%,0 91%); }
+        .preloader-panel--bottom { bottom: 0; height: 52%;
+            clip-path: polygon(0 9%,10% 0,19% 11%,28% 0,37% 9%,46% 0,55% 12%,64% 0,73% 10%,82% 0,91% 8%,100% 0,100% 100%,0 100%); }
+        .preloader.open .preloader-panel--top { transform: translateY(-105%); }
+        .preloader.open .preloader-panel--bottom { transform: translateY(105%); }
+        .preloader-count, .preloader-name { position: absolute; z-index: 2; transition: opacity .4s; }
+        .preloader.open .preloader-count, .preloader.open .preloader-name { opacity: 0; }
+        .preloader-count { top: 32px; left: 32px; font-family: 'Orbitron', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem); color: var(--primary-cyan); text-shadow: 0 0 20px rgba(0, 212, 255, .6); }
+        .preloader-name { bottom: 32px; left: 32px; right: 32px; display: flex; flex-direction: column; }
+        .preloader-name span { font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: clamp(2.4rem, 9vw, 7rem); line-height: .95; text-transform: uppercase; }
+        .preloader-name span:last-child { color: var(--primary-cyan); }
+        @media (pointer: coarse) { .cursor { display: none !important; } }
+
         /* Contact */
         .contact-form .form-control {
             background: var(--bg-card);
@@ -536,6 +590,21 @@
 </head>
 <body>
 
+    <!-- Préchargeur : compteur 00 -> 100 -->
+    <div class="preloader" id="preloader" aria-hidden="true">
+        <div class="preloader-panel preloader-panel--top"></div>
+        <div class="preloader-panel preloader-panel--bottom"></div>
+        <div class="preloader-count"><span id="preloaderCount">00</span></div>
+        <div class="preloader-name"><span>Abid</span><span>Haroon</span></div>
+    </div>
+
+    <!-- Curseur fluide (souris uniquement, voir fluid-cursor.js) -->
+    <div class="cursor" id="cursor" aria-hidden="true">
+        <canvas id="fluidCanvas" class="fluid-canvas"></canvas>
+        <div class="cursor-dot" id="cursorDot"></div>
+        <span class="cursor-label" id="cursorLabel"></span>
+    </div>
+
     <!-- ==================== NAVIGATION ==================== -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
@@ -565,7 +634,8 @@
         <div class="container hero-content">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Abid HAROON" class="profile-img">
+                    <div class="hero-monogram" aria-hidden="true"><span>AH</span></div>
+                    <span class="hero-tag"><i class="bi bi-hdd-network me-2"></i>Systèmes · Réseaux · Cybersécurité</span>
                     <h1 class="display-4 fw-bold mb-3 glow-text">Abid HAROON</h1>
                     <p class="lead fs-4">Étudiant BTS SIO – 2ᵉ année</p>
                     <p class="mb-4 text-muted">Motivé, adaptable et disponible immédiatement</p>
@@ -1239,6 +1309,52 @@
             this.reset();
         });
 
+
+        // ===== Préchargeur : compteur de 00 à 100 =====
+        (function () {
+            const pre = document.getElementById('preloader');
+            const out = document.getElementById('preloaderCount');
+            if (!pre) return;
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { pre.remove(); return; }
+            const DUREE = 1600, debut = performance.now();
+            const ease = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+            (function tick(now) {
+                const t = Math.min((now - debut) / DUREE, 1);
+                out.textContent = String(Math.round(ease(t) * 100)).padStart(2, '0');
+                if (t < 1) return requestAnimationFrame(tick);
+                setTimeout(() => { pre.classList.add('open'); setTimeout(() => pre.remove(), 1000); }, 300);
+            })(debut);
+        })();
+
+        // ===== Curseur : point précis + étiquette (la fumée est dans fluid-cursor.js) =====
+        (function () {
+            if (!window.matchMedia('(pointer: fine)').matches) return;
+            const root = document.documentElement;
+            root.classList.add('has-cursor');
+            const dot = document.getElementById('cursorDot');
+            const label = document.getElementById('cursorLabel');
+            document.querySelectorAll('a[href$=".pdf"]').forEach(a => { if (!a.dataset.cursor) a.dataset.cursor = 'PDF'; });
+            document.querySelectorAll('a[href$=".xls"], a[href$=".xlsx"]').forEach(a => { if (!a.dataset.cursor) a.dataset.cursor = 'XLS'; });
+            document.querySelectorAll('.prof-card').forEach(b => b.dataset.cursor = 'Ouvrir');
+            addEventListener('mousemove', e => {
+                dot.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+                label.style.transform = `translate(${e.clientX + 26}px, ${e.clientY - 12}px)`;
+            }, { passive: true });
+            document.addEventListener('mouseover', e => {
+                const t = e.target.closest('[data-cursor], a, button');
+                if (!t) return;
+                const txt = t.dataset.cursor || '';
+                label.textContent = txt;
+                root.classList.toggle('cursor-hover', !!txt);
+            });
+            document.addEventListener('mouseout', e => {
+                const t = e.target.closest('[data-cursor], a, button');
+                if (t && !(e.relatedTarget && e.relatedTarget.closest && e.relatedTarget.closest('[data-cursor], a, button'))) {
+                    root.classList.remove('cursor-hover'); label.textContent = '';
+                }
+            });
+        })();
     </script>
+    <script src="fluid-cursor.js" defer></script>
 </body>
 </html>
