@@ -396,6 +396,48 @@
             color: #fff;
         }
 
+
+        /* ---- 2ème année : choix du prof + onglets ---- */
+        .prof-card {
+            width: 100%; display: flex; flex-direction: column; align-items: center; gap: 6px;
+            background: var(--bg-card); color: var(--text-light);
+            border: 1px solid rgba(0, 212, 255, 0.15); border-radius: 20px;
+            padding: 28px 20px; transition: 0.3s; cursor: pointer;
+        }
+        .prof-card i { font-size: 2.4rem; color: var(--secondary-neon); transition: 0.3s; }
+        .prof-card .prof-nom { font-family: 'Orbitron', sans-serif; font-size: 1.3rem; color: var(--primary-cyan); }
+        .prof-card .prof-sous { font-size: 0.85rem; color: var(--text-muted); }
+        .prof-card:hover { border-color: var(--secondary-neon); transform: translateY(-4px); }
+        .prof-card.active { border-color: var(--primary-cyan); box-shadow: 0 0 30px rgba(0, 212, 255, 0.2); background: linear-gradient(145deg, #141a2b, #1a1f3a); }
+        .prof-card.active i { color: var(--primary-cyan); }
+
+        .bloc-tabs { gap: 10px; flex-wrap: wrap; }
+        .bloc-tabs .nav-link {
+            background: rgba(123, 47, 252, 0.1); color: var(--text-light);
+            border: 1px solid rgba(123, 47, 252, 0.3); border-radius: 30px;
+            padding: 8px 22px; font-weight: 600; transition: 0.3s;
+        }
+        .bloc-tabs .nav-link::after { display: none; }
+        .bloc-tabs .nav-link:hover { border-color: var(--primary-cyan); color: var(--primary-cyan); }
+        .bloc-tabs .nav-link.active { background: var(--primary-cyan); color: #0b0e1a; border-color: var(--primary-cyan); box-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
+        .cr-count { display: inline-block; min-width: 22px; margin-left: 6px; padding: 0 6px; border-radius: 20px; font-size: 0.75rem; background: rgba(255,255,255,0.15); }
+        .bloc-tabs .nav-link.active .cr-count { background: rgba(11, 14, 26, 0.2); }
+
+        .cr-bloc-titre { color: var(--primary-cyan); font-family: 'Orbitron', sans-serif; font-size: 1.05rem; margin-bottom: 18px; }
+        .cr-item {
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+            background: rgba(0, 212, 255, 0.05); border-left: 3px solid var(--secondary-neon);
+            border-radius: 12px; padding: 14px 18px; margin-bottom: 12px; transition: 0.3s;
+        }
+        .cr-item:hover { background: rgba(0, 212, 255, 0.1); border-left-color: var(--primary-cyan); }
+        .cr-info { display: flex; align-items: center; gap: 14px; min-width: 0; }
+        .cr-info > i { font-size: 1.6rem; color: var(--primary-cyan); }
+        .cr-titre { font-weight: 600; color: var(--text-light); }
+        .cr-desc { font-size: 0.85rem; color: var(--text-muted); }
+        .cr-actions { display: flex; gap: 8px; }
+        .cr-actions .btn-sm-custom { padding: 4px 16px; font-size: 0.8rem; }
+        .cr-vide { color: var(--text-muted); padding: 20px; text-align: center; border: 1px dashed rgba(0, 212, 255, 0.2); border-radius: 12px; }
+
         /* Contact */
         .contact-form .form-control {
             background: var(--bg-card);
@@ -753,222 +795,223 @@
     <!-- ================================================================ -->
     <!-- ==================== SECTION 2ÈME ANNÉE ======================== -->
     <!-- ================================================================ -->
+    <!-- Pour ajouter un compte rendu : copier un bloc <div class="cr-item"> dans le bon onglet
+         et changer le titre, la description et le nom du fichier PDF (2 fois). -->
     <section id="annee2" class="section-padding" style="background:var(--bg-dark);">
         <div class="container">
             <h2 class="text-center section-title">2ᵉ Année – Cours & TP</h2>
-            <p class="text-center text-muted mb-5">Espace dédié aux matières de deuxième année avec les professeurs</p>
+            <p class="text-center mb-5" style="color:var(--text-muted);">Choisissez un professeur pour voir les comptes rendus</p>
 
-            <!-- Bloc M. SOTOCA -->
-            <div class="row g-4 mb-5">
-                <div class="col-12">
-                    <div class="course-zone">
-                        <div class="d-flex align-items-center gap-3 mb-3">
-                            <i class="bi bi-person-badge" style="font-size:2rem;color:var(--secondary-neon);"></i>
-                            <h4 style="margin:0;">M. SOTOCA</h4>
-                            <span class="badge-neon">Cours & TP</span>
-                        </div>
-                        <p class="text-muted"></p>
-
-                        <!-- Exemples de cours (à remplacer par vos liens) -->
-
-                        <!-- Premier fichier :  -->
-<div class="course-item">
-    <span>
-        <i class="bi bi-file-earmark-pdf me-2" style="color:var(--primary-cyan);"></i>
-        TP 01 – Devoir 1
-    </span>
-    <div>
-        <span class="badge-neon">Disponible</span>
-        <a href="TP 01.pdf" download class="btn-sm-custom btn-sm-custom-outline" style="padding:2px 14px;font-size:0.7rem;">Download</a>
-    </div>
-</div>
-
-<div class="course-item">
-    <span>
-        <i class="bi bi-file-earmark-pdf me-2" style="color:var(--primary-cyan);"></i>
-        B2 TP 02 Création des switches
-    </span>
-    <div>
-        <span class="badge-neon">Disponible</span>
-        <a href="TP 02 Création des switchs.pdf" download class="btn-sm-custom btn-sm-custom-outline" style="padding:2px 14px;font-size:0.7rem;">Download</a>
-    </div>
-</div>
-
-            <div class="course-item">
-    <span>
-        <i class="bi bi-file-earmark-pdf me-2" style="color:var(--primary-cyan);"></i>
-       B1 TP02 TP Veille sur GLPI
-    </span>
-    <div>
-        <span class="badge-neon">Disponible</span>
-        <a href="B1_TP02_GLPI.pdf" download class="btn-sm-custom btn-sm-custom-outline" style="padding:2px 14px;font-size:0.7rem;">Download</a>
-    </div>
-</div>
-
-
-            <div class="course-item">
-    <span>
-        <i class="bi bi-file-earmark-pdf me-2" style="color:var(--primary-cyan);"></i>
-       B2 TP03 SAMBA
-    </span>
-    <div>
-        <span class="badge-neon">Disponible</span>
-        <a href="SAMBA.pdf" download class="btn-sm-custom btn-sm-custom-outline" style="padding:2px 14px;font-size:0.7rem;">Download</a>
-    </div>
-</div>
-
-            <div class="course-item">
-    <span>
-        <i class="bi bi-file-earmark-pdf me-2" style="color:var(--primary-cyan);"></i>
-    B1 TP03 GLPI HTML
-    </span>
-    <div>
-        <span class="badge-neon">Disponible</span>
-        <a href="GLPI.pdf" download class="btn-sm-custom btn-sm-custom-outline" style="padding:2px 14px;font-size:0.7rem;">Download</a>
-    </div>
-</div>
-
-            <div class="course-item">
-    <span>
-        <i class="bi bi-file-earmark-pdf me-2" style="color:var(--primary-cyan);"></i>
-        B2 TP04 CISCO
-    </span>
-    <div>
-        <span class="badge-neon">Disponible</span>
-        <a href="CISCO WIFI.pdf" download class="btn-sm-custom btn-sm-custom-outline" style="padding:2px 14px;font-size:0.7rem;">Download</a>
-    </div>
-</div>
-             <div class="course-item">
-    <span>
-        <i class="bi bi-file-earmark-pdf me-2" style="color:var(--primary-cyan);"></i>
-        BLOC 2 TP 04 mise en place d'un point d'accés
-    </span>
-    <div>
-        <span class="badge-neon">Disponible</span>
-        <a href="Point réseau.pdf" download class="btn-sm-custom btn-sm-custom-outline" style="padding:2px 14px;font-size:0.7rem;">Download</a>
-    </div>
-</div>
-            <div class="course-item">
-    <span>
-        <i class="bi bi-file-earmark-pdf me-2" style="color:var(--primary-cyan);"></i>
-       Bloc 2 TP GLPI
-    </span>
-    <div>
-        <span class="badge-neon">Disponible</span>
-        <a href="TP_GLPI Installation.pdf" download class="btn-sm-custom btn-sm-custom-outline" style="padding:2px 14px;font-size:0.7rem;">Download</a>
-    </div>
-</div>
-           <div class="course-item">
-    <span>
-        <i class="bi bi-file-earmark-pdf me-2" style="color:var(--primary-cyan);"></i>
-        TP MOOC 1
-    </span>
-    <div>
-        <span class="badge-neon">Disponible</span>
-        <a href="TP01 MOOC Recherches.pdf" download class="btn-sm-custom btn-sm-custom-outline" style="padding:2px 14px;font-size:0.7rem;">Download</a>
-    </div>
-</div>
-               <div class="course-item">
-    <span>
-        <i class="bi bi-file-earmark-pdf me-2" style="color:var(--primary-cyan);"></i>
-        TP MOOC 2
-    </span>
-    <div>
-        <span class="badge-neon">Disponible</span>
-        <a href="TP02 MOOC Planning.pdf" download class="btn-sm-custom btn-sm-custom-outline" style="padding:2px 14px;font-size:0.7rem;">Download</a>
-    </div>
-</div>
-              <div class="course-item">
-    <span>
-        <i class="bi bi-file-earmark-pdf me-2" style="color:var(--primary-cyan);"></i>
-       Atelier TP02 Migration ESXI
-    </span>
-    <div>
-        <span class="badge-neon">Disponible</span>
-        <a href="TP02 ESXI.pdf" download class="btn-sm-custom btn-sm-custom-outline" style="padding:2px 14px;font-size:0.7rem;">Download</a>
-    </div>
-</div>
-             <div class="course-item">
-    <span>
-        <i class="bi bi-file-earmark-pdf me-2" style="color:var(--primary-cyan);"></i>
-     Atelier TP01 Point Réseau
-    </span>
-    <div>
-        <span class="badge-neon">Disponible</span>
-        <a href="TP01_Point réseau.pdf" download class="btn-sm-custom btn-sm-custom-outline" style="padding:2px 14px;font-size:0.7rem;">Download</a>
-    </div>
-</div>
-                         <div class="course-item">
-    <span>
-        <i class="bi bi-file-earmark-pdf me-2" style="color:var(--primary-cyan);"></i>
-    B2 TP05  Sauvegarde et restauration
-    </span>
-    <div>
-        <span class="badge-neon">Disponible</span>
-        <a href="TP05 Sauvegarde et restauration.pdf" download class="btn-sm-custom btn-sm-custom-outline" style="padding:2px 14px;font-size:0.7rem;">Download</a>
-    </div>
-</div>
-
-
-
-
-
-                       <div class="mt-3">
-                            <button class="btn-sm-custom" onclick="ajouterCours(this)"><i class="bi bi-plus-circle"></i> Ajouter un cours</button>
-                        </div>
-                    </div>
+            <!-- Choix du professeur -->
+            <div class="row g-4 mb-4 justify-content-center prof-choix" role="tablist">
+                <div class="col-md-6 col-lg-5">
+                    <button class="prof-card active" data-bs-toggle="pill" data-bs-target="#prof-sotoca" type="button" role="tab">
+                        <i class="bi bi-hdd-network"></i>
+                        <span class="prof-nom">M. SOTOCA</span>
+                        <span class="prof-sous">Systèmes & réseaux · B1 · B2 · B3 · Atelier</span>
+                    </button>
+                </div>
+                <div class="col-md-6 col-lg-5">
+                    <button class="prof-card" data-bs-toggle="pill" data-bs-target="#prof-beauvallet" type="button" role="tab">
+                        <i class="bi bi-code-slash"></i>
+                        <span class="prof-nom">Mme Beauvallet</span>
+                        <span class="prof-sous">Programmation & PGI</span>
+                    </button>
                 </div>
             </div>
 
-            <!-- Bloc Mme Beauvalet -->
-            <div class="row g-4">
-                <div class="col-12">
+            <div class="tab-content">
+                <!-- ===== M. SOTOCA ===== -->
+                <div class="tab-pane fade show active" id="prof-sotoca" role="tabpanel">
                     <div class="course-zone">
-                        <div class="d-flex align-items-center gap-3 mb-3">
-                            <i class="bi bi-person-fill" style="font-size:2rem;color:var(--primary-cyan);"></i>
-                            <h4 style="margin:0;">Mme Beauvalet</h4>
-                            <span class="badge-neon" style="background:var(--primary-cyan);color:#0b0e1a;">Programmation & Algo</span>
-                        </div>
-                     <p class="text-dark fw-medium">Déposez ici vos travaux pour les cours de Mme Beauvalet (Java, PHP, bases de données, etc.).</p>
-         <!-- Premier fichier : TP PGI (PDF) -->
-<div class="course-item">
-    <span>
-        <i class="bi bi-file-earmark-pdf me-2" style="color:var(--primary-cyan);"></i>
-        TP PGI – Devoir 1
-    </span>
-    <div>
-        <span class="badge-neon">Disponible</span>
-        <a href="PGI.pdf" download class="btn-sm-custom btn-sm-custom-outline" style="padding:2px 14px;font-size:0.7rem;">Download</a>
-    </div>
-</div>
-
-<!-- Second fichier : PGI XLS (Excel) -->
-<div class="course-item">
-    <span>
-        <i class="bi bi-file-earmark-excel me-2" style="color:var(--primary-cyan);"></i>
-        PGI XLS – Exercice
-    </span>
-    <div>
-        <span class="badge-neon">Disponible</span>
-        <a href="PGI_exercice.xls" download class="btn-sm-custom btn-sm-custom-outline" style="padding:2px 14px;font-size:0.7rem;">Download</a>
-    </div>
-</div>
-                        <div class="course-item">
-                            <span><i class="bi bi-database me-2" style="color:var(--primary-cyan);"></i> Projet SQL – Modélisation</span>
-                            <div>
-                                <span class="badge-neon">À uploader</span>
-                                <a href="#" class="btn-sm-custom btn-sm-custom-outline" style="padding:2px 14px;font-size:0.7rem;">Ajouter</a>
+                        <ul class="nav nav-pills bloc-tabs mb-4" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#so-b1" type="button" role="tab">B1 <span class="cr-count">4</span></button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#so-b2" type="button" role="tab">B2 <span class="cr-count">7</span></button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#so-b3" type="button" role="tab">B3 <span class="cr-count">0</span></button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#so-atelier" type="button" role="tab">Atelier <span class="cr-count">2</span></button>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="so-b1" role="tabpanel">
+                                <h5 class="cr-bloc-titre">Bloc 1 – Support et mise à disposition de services</h5>
+                                <div class="cr-item">
+                                    <div class="cr-info">
+                                        <i class="bi bi-file-earmark-pdf"></i>
+                                        <div><div class="cr-titre">TP02 – Veille sur GLPI</div><div class="cr-desc">Recherches sur GLPI pour remplacer un suivi du parc sous Excel.</div></div>
+                                    </div>
+                                    <div class="cr-actions">
+                                        <a href="B1_TP02_GLPI.pdf" target="_blank" class="btn-sm-custom">Voir</a>
+                                        <a href="B1_TP02_GLPI.pdf" download class="btn-sm-custom btn-sm-custom-outline">Télécharger</a>
+                                    </div>
+                                </div>
+                                <div class="cr-item">
+                                    <div class="cr-info">
+                                        <i class="bi bi-file-earmark-pdf"></i>
+                                        <div><div class="cr-titre">TP03 – Opération GLPI</div><div class="cr-desc">Feuille de route interactive : 40 questions sur GLPI.</div></div>
+                                    </div>
+                                    <div class="cr-actions">
+                                        <a href="GLPI.pdf" target="_blank" class="btn-sm-custom">Voir</a>
+                                        <a href="GLPI.pdf" download class="btn-sm-custom btn-sm-custom-outline">Télécharger</a>
+                                    </div>
+                                </div>
+                                <div class="cr-item">
+                                    <div class="cr-info">
+                                        <i class="bi bi-file-earmark-pdf"></i>
+                                        <div><div class="cr-titre">TP01 – MOOC : Recherches</div><div class="cr-desc">Découverte du MOOC et choix d'une formation en ligne.</div></div>
+                                    </div>
+                                    <div class="cr-actions">
+                                        <a href="TP01 MOOC Recherches.pdf" target="_blank" class="btn-sm-custom">Voir</a>
+                                        <a href="TP01 MOOC Recherches.pdf" download class="btn-sm-custom btn-sm-custom-outline">Télécharger</a>
+                                    </div>
+                                </div>
+                                <div class="cr-item">
+                                    <div class="cr-info">
+                                        <i class="bi bi-file-earmark-pdf"></i>
+                                        <div><div class="cr-titre">TP02 – MOOC : Planning</div><div class="cr-desc">Planning de formation « Introduction à la cybersécurité » (Cisco).</div></div>
+                                    </div>
+                                    <div class="cr-actions">
+                                        <a href="TP02 MOOC Planning.pdf" target="_blank" class="btn-sm-custom">Voir</a>
+                                        <a href="TP02 MOOC Planning.pdf" download class="btn-sm-custom btn-sm-custom-outline">Télécharger</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="so-b2" role="tabpanel">
+                                <h5 class="cr-bloc-titre">Bloc 2 – Administration des systèmes et des réseaux</h5>
+                                <div class="cr-item">
+                                    <div class="cr-info">
+                                        <i class="bi bi-file-earmark-pdf"></i>
+                                        <div><div class="cr-titre">TP01 – Le serveur de virtualisation</div><div class="cr-desc">Découverte des hyperviseurs et du serveur ESXi.</div></div>
+                                    </div>
+                                    <div class="cr-actions">
+                                        <a href="TP 01.pdf" target="_blank" class="btn-sm-custom">Voir</a>
+                                        <a href="TP 01.pdf" download class="btn-sm-custom btn-sm-custom-outline">Télécharger</a>
+                                    </div>
+                                </div>
+                                <div class="cr-item">
+                                    <div class="cr-info">
+                                        <i class="bi bi-file-earmark-pdf"></i>
+                                        <div><div class="cr-titre">TP02 – Création des switches virtuels</div><div class="cr-desc">Mise en place des switches virtuels sur l'hyperviseur.</div></div>
+                                    </div>
+                                    <div class="cr-actions">
+                                        <a href="TP 02 Création des switchs.pdf" target="_blank" class="btn-sm-custom">Voir</a>
+                                        <a href="TP 02 Création des switchs.pdf" download class="btn-sm-custom btn-sm-custom-outline">Télécharger</a>
+                                    </div>
+                                </div>
+                                <div class="cr-item">
+                                    <div class="cr-info">
+                                        <i class="bi bi-file-earmark-pdf"></i>
+                                        <div><div class="cr-titre">TP03 – Installation de SAMBA</div><div class="cr-desc">Partage de fichiers entre Linux et Windows.</div></div>
+                                    </div>
+                                    <div class="cr-actions">
+                                        <a href="SAMBA.pdf" target="_blank" class="btn-sm-custom">Voir</a>
+                                        <a href="SAMBA.pdf" download class="btn-sm-custom btn-sm-custom-outline">Télécharger</a>
+                                    </div>
+                                </div>
+                                <div class="cr-item">
+                                    <div class="cr-info">
+                                        <i class="bi bi-file-earmark-pdf"></i>
+                                        <div><div class="cr-titre">TP04 – Point d'accès Wi-Fi Cisco WAP121</div><div class="cr-desc">Reset, configuration et tests du point d'accès.</div></div>
+                                    </div>
+                                    <div class="cr-actions">
+                                        <a href="CISCO WIFI.pdf" target="_blank" class="btn-sm-custom">Voir</a>
+                                        <a href="CISCO WIFI.pdf" download class="btn-sm-custom btn-sm-custom-outline">Télécharger</a>
+                                    </div>
+                                </div>
+                                <div class="cr-item">
+                                    <div class="cr-info">
+                                        <i class="bi bi-file-earmark-pdf"></i>
+                                        <div><div class="cr-titre">TP04 – Point d'accès Wi-Fi (version complète)</div><div class="cr-desc">Compte rendu complet avec documentation.</div></div>
+                                    </div>
+                                    <div class="cr-actions">
+                                        <a href="Point réseau.pdf" target="_blank" class="btn-sm-custom">Voir</a>
+                                        <a href="Point réseau.pdf" download class="btn-sm-custom btn-sm-custom-outline">Télécharger</a>
+                                    </div>
+                                </div>
+                                <div class="cr-item">
+                                    <div class="cr-info">
+                                        <i class="bi bi-file-earmark-pdf"></i>
+                                        <div><div class="cr-titre">TP05 – Sauvegardes et restaurations ESXi</div><div class="cr-desc">Veille et mise en place des sauvegardes sur ESXi.</div></div>
+                                    </div>
+                                    <div class="cr-actions">
+                                        <a href="TP05 Sauvegarde et restauration.pdf" target="_blank" class="btn-sm-custom">Voir</a>
+                                        <a href="TP05 Sauvegarde et restauration.pdf" download class="btn-sm-custom btn-sm-custom-outline">Télécharger</a>
+                                    </div>
+                                </div>
+                                <div class="cr-item">
+                                    <div class="cr-info">
+                                        <i class="bi bi-file-earmark-pdf"></i>
+                                        <div><div class="cr-titre">TP06 – Mise en place de GLPI</div><div class="cr-desc">Préparation du serveur et installation de GLPI.</div></div>
+                                    </div>
+                                    <div class="cr-actions">
+                                        <a href="TP_GLPI Installation.pdf" target="_blank" class="btn-sm-custom">Voir</a>
+                                        <a href="TP_GLPI Installation.pdf" download class="btn-sm-custom btn-sm-custom-outline">Télécharger</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="so-b3" role="tabpanel">
+                                <h5 class="cr-bloc-titre">Bloc 3 – Cybersécurité</h5>
+                                <div class="cr-vide"><i class="bi bi-hourglass-split me-2"></i>Aucun compte rendu pour l'instant.</div>
+                            </div>
+                            <div class="tab-pane fade" id="so-atelier" role="tabpanel">
+                                <h5 class="cr-bloc-titre">Atelier professionnel – Cas GSB</h5>
+                                <div class="cr-item">
+                                    <div class="cr-info">
+                                        <i class="bi bi-file-earmark-pdf"></i>
+                                        <div><div class="cr-titre">TP01 – Point sur le réseau GSB</div><div class="cr-desc">Inventaire des machines, adresses IP et tests des services.</div></div>
+                                    </div>
+                                    <div class="cr-actions">
+                                        <a href="TP01_Point réseau.pdf" target="_blank" class="btn-sm-custom">Voir</a>
+                                        <a href="TP01_Point réseau.pdf" download class="btn-sm-custom btn-sm-custom-outline">Télécharger</a>
+                                    </div>
+                                </div>
+                                <div class="cr-item">
+                                    <div class="cr-info">
+                                        <i class="bi bi-file-earmark-pdf"></i>
+                                        <div><div class="cr-titre">TP02 – Migration ESXi + sauvegardes</div><div class="cr-desc">Migration des machines virtuelles et sauvegarde.</div></div>
+                                    </div>
+                                    <div class="cr-actions">
+                                        <a href="TP02 ESXI.pdf" target="_blank" class="btn-sm-custom">Voir</a>
+                                        <a href="TP02 ESXI.pdf" download class="btn-sm-custom btn-sm-custom-outline">Télécharger</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="mt-3">
-                            <button class="btn-sm-custom" onclick="ajouterCours(this)"><i class="bi bi-plus-circle"></i> Ajouter un cours</button>
-                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="text-center mt-5 text-muted">
-                <i class="bi bi-info-circle me-2"></i> Ces zones sont modifiables : vous pouvez y ajouter des liens, des PDF, ou des descriptions.
+                <!-- ===== Mme BEAUVALLET ===== -->
+                <div class="tab-pane fade" id="prof-beauvallet" role="tabpanel">
+                    <div class="course-zone">
+                        <h5 class="cr-bloc-titre">Comptes rendus – Mme Beauvallet</h5>
+                                <div class="cr-item">
+                                    <div class="cr-info">
+                                        <i class="bi bi-file-earmark-pdf"></i>
+                                        <div><div class="cr-titre">TP PGI – Devoir 1</div><div class="cr-desc">Découverte d'un progiciel de gestion intégré.</div></div>
+                                    </div>
+                                    <div class="cr-actions">
+                                        <a href="PGI.pdf" target="_blank" class="btn-sm-custom">Voir</a>
+                                        <a href="PGI.pdf" download class="btn-sm-custom btn-sm-custom-outline">Télécharger</a>
+                                    </div>
+                                </div>
+                                <div class="cr-item">
+                                    <div class="cr-info">
+                                        <i class="bi bi-file-earmark-excel"></i>
+                                        <div><div class="cr-titre">PGI – Exercice (Excel)</div><div class="cr-desc">Fichier d'exercice sur le PGI.</div></div>
+                                    </div>
+                                    <div class="cr-actions">
+                                        <a href="PGI_exercice.xls" target="_blank" class="btn-sm-custom">Voir</a>
+                                        <a href="PGI_exercice.xls" download class="btn-sm-custom btn-sm-custom-outline">Télécharger</a>
+                                    </div>
+                                </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1160,20 +1203,6 @@
             this.reset();
         });
 
-        // Fonction pour ajouter dynamiquement un cours dans les zones "2ème année"
-        function ajouterCours(btn) {
-            const zone = btn.closest('.course-zone');
-            const newItem = document.createElement('div');
-            newItem.className = 'course-item';
-            newItem.innerHTML = `
-                <span><i class="bi bi-file-earmark me-2" style="color:var(--primary-cyan);"></i> Nouveau cours</span>
-                <div>
-                    <span class="badge-neon">À uploader</span>
-                    <a href="#" class="btn-sm-custom btn-sm-custom-outline" style="padding:2px 14px;font-size:0.7rem;">Ajouter</a>
-                </div>
-            `;
-            zone.querySelector('.mt-3').before(newItem);
-        }
     </script>
 </body>
 </html>
