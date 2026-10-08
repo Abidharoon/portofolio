@@ -438,6 +438,34 @@
         .cr-actions .btn-sm-custom { padding: 4px 16px; font-size: 0.8rem; }
         .cr-vide { color: var(--text-muted); padding: 20px; text-align: center; border: 1px dashed rgba(0, 212, 255, 0.2); border-radius: 12px; }
 
+
+        /* ---- Monogramme (remplace la photo) ---- */
+        .hero-monogram {
+            width: 120px; height: 120px; margin: 10px auto 34px;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Orbitron', sans-serif; font-size: 2.6rem; font-weight: 700; color: var(--primary-cyan);
+            border: 2px solid var(--primary-cyan); border-radius: 24px; transform: rotate(45deg);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.35), inset 0 0 25px rgba(123, 47, 252, 0.25);
+            background: rgba(11, 14, 26, 0.6);
+        }
+        .hero-monogram { text-shadow: 0 0 15px rgba(0, 212, 255, 0.7); }
+        .hero-monogram > span { display: block; transform: rotate(-45deg); }
+        .hero-tag {
+            display: inline-block; margin-bottom: 18px; padding: 6px 16px; border-radius: 30px;
+            font-size: 0.85rem; letter-spacing: 1px; color: var(--text-light);
+            border: 1px solid rgba(123, 47, 252, 0.5); background: rgba(123, 47, 252, 0.12);
+        }
+
+        /* ---- Curseur brillant + blocs lumineux ---- */
+        #blockTrail { position: fixed; inset: 0; pointer-events: none; z-index: 9998; mix-blend-mode: screen; }
+        .cursor-dot, .cursor-ring { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; border-radius: 50%; transform: translate(-50%, -50%); opacity: 0; transition: opacity .3s; }
+        .cursor-dot { width: 8px; height: 8px; background: #fff; box-shadow: 0 0 10px #fff, 0 0 20px var(--primary-cyan), 0 0 40px var(--primary-cyan); }
+        .cursor-ring { width: 36px; height: 36px; border: 2px solid var(--primary-cyan); box-shadow: 0 0 15px rgba(0, 212, 255, 0.6), inset 0 0 10px rgba(0, 212, 255, 0.3); transition: width .2s, height .2s, border-color .2s, background .2s, opacity .3s; }
+        .cursor-ring.hover { width: 56px; height: 56px; border-color: var(--secondary-neon); background: rgba(123, 47, 252, 0.12); box-shadow: 0 0 25px rgba(123, 47, 252, 0.7); }
+        body.fx-on .cursor-dot, body.fx-on .cursor-ring { opacity: 1; }
+        body.fx-on, body.fx-on a, body.fx-on button, body.fx-on .prof-card { cursor: none; }
+        @media (pointer: coarse) { .cursor-dot, .cursor-ring, #blockTrail { display: none; } }
+
         /* Contact */
         .contact-form .form-control {
             background: var(--bg-card);
@@ -536,6 +564,11 @@
 </head>
 <body>
 
+    <!-- Curseur brillant + blocs -->
+    <canvas id="blockTrail"></canvas>
+    <div class="cursor-ring" id="cursorRing"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+
     <!-- ==================== NAVIGATION ==================== -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
@@ -565,7 +598,8 @@
         <div class="container hero-content">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Abid HAROON" class="profile-img">
+                    <div class="hero-monogram" aria-hidden="true"><span>AH</span></div>
+                    <span class="hero-tag"><i class="bi bi-hdd-network me-2"></i>Systèmes · Réseaux · Cybersécurité</span>
                     <h1 class="display-4 fw-bold mb-3 glow-text">Abid HAROON</h1>
                     <p class="lead fs-4">Étudiant BTS SIO – 2ᵉ année</p>
                     <p class="mb-4 text-muted">Motivé, adaptable et disponible immédiatement</p>
@@ -1239,6 +1273,62 @@
             this.reset();
         });
 
+
+        // ===== Curseur brillant + blocs lumineux qui suivent la souris =====
+        (function () {
+            const fin = window.matchMedia('(pointer: fine)').matches;
+            const calme = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (!fin) return;
+            const dot = document.getElementById('cursorDot');
+            const ring = document.getElementById('cursorRing');
+            const cv = document.getElementById('blockTrail');
+            const ctx = cv.getContext('2d');
+            const TAILLE = 40;               // taille d'un bloc (comme la grille de l'accueil)
+            const blocs = new Map();         // bloc allumé -> intensité
+            let mx = -100, my = -100, rx = -100, ry = -100, dpr = 1;
+
+            function resize() {
+                dpr = window.devicePixelRatio || 1;
+                cv.width = innerWidth * dpr; cv.height = innerHeight * dpr;
+                cv.style.width = innerWidth + 'px'; cv.style.height = innerHeight + 'px';
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            }
+            resize(); addEventListener('resize', resize);
+
+            addEventListener('mousemove', e => {
+                mx = e.clientX; my = e.clientY;
+                document.body.classList.add('fx-on');
+                dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
+                if (calme) return;
+                const cx = Math.floor(mx / TAILLE), cy = Math.floor(my / TAILLE);
+                blocs.set(cx + ',' + cy, 1);
+                if (Math.random() < 0.35) {   // quelques blocs voisins s'allument aussi
+                    const vx = cx + Math.round(Math.random() * 2 - 1), vy = cy + Math.round(Math.random() * 2 - 1);
+                    const k = vx + ',' + vy; if (!blocs.has(k)) blocs.set(k, 0.5);
+                }
+            });
+            document.addEventListener('mouseleave', () => document.body.classList.remove('fx-on'));
+            document.addEventListener('mouseover', e => ring.classList.toggle('hover', !!e.target.closest('a, button, .prof-card, .cr-item, .report-card')));
+
+            function frame() {
+                rx += (mx - rx) * 0.18; ry += (my - ry) * 0.18;
+                ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
+                ctx.clearRect(0, 0, innerWidth, innerHeight);
+                for (const [k, a] of blocs) {
+                    const [x, y] = k.split(',').map(Number);
+                    const px = x * TAILLE, py = y * TAILLE;
+                    ctx.fillStyle = `rgba(0, 212, 255, ${a * 0.22})`;
+                    ctx.fillRect(px + 1, py + 1, TAILLE - 2, TAILLE - 2);
+                    ctx.strokeStyle = `rgba(${a > 0.6 ? '0, 212, 255' : '123, 47, 252'}, ${a * 0.9})`;
+                    ctx.lineWidth = 1;
+                    ctx.strokeRect(px + 1.5, py + 1.5, TAILLE - 3, TAILLE - 3);
+                    const na = a - 0.025;
+                    na <= 0 ? blocs.delete(k) : blocs.set(k, na);
+                }
+                requestAnimationFrame(frame);
+            }
+            frame();
+        })();
     </script>
 </body>
 </html>
